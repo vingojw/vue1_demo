@@ -1,6 +1,8 @@
 var webpack = require('webpack');
 //混淆压缩
 var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+//检测重用模块
+var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 module.exports = {
     entry: ["./src/app.js"],
     output: {
@@ -31,7 +33,9 @@ module.exports = {
           compress: {
             warnings: false
           }
-        })
+        }),
+        //自动分析重用的模块并且打包成单独的文件
+        new CommonsChunkPlugin('vendor.js')
     ],
     devtool: 'source-map',
     resolve: {
