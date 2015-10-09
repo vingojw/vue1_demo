@@ -24,6 +24,7 @@ if (process.env.PRODUCTION) {
   plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false } }));
 }
 
+
 module.exports = {
     entry: ["./src/app.js"],
     output: {
