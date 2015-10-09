@@ -1,5 +1,9 @@
 module.exports = function(router){
 	router.map({
+		'/':{
+			name:'home',
+			component: require('./views/home.vue')
+		},
 		'/about':{
 			component: require('./components/about.vue')
 		},
@@ -25,18 +29,18 @@ module.exports = function(router){
 	// }
 	// })
 
-	// router.beforeEach(function(transition){
-	// 	if(transition.to.path === '/forbidden'){
-	// 		router.app.authenticating = true
-	// 		setTimeout(function(){
-	// 			router.app.authenticating = false
-	// 			alert('此路由在全局中设置为中止');
-	// 			transition.abort();
-	// 		},1500);
-	// 	} else {
-	// 		 transition.next();
-	// 		 console.log('beforeEach');
-	// 	}
-	// });
+	router.beforeEach(function(transition){
+		if(transition.to.path === '/forbidden'){
+			router.app.authenticating = true
+			setTimeout(function(){
+				router.app.authenticating = false
+				alert('此路由在全局中设置为中止');
+				transition.abort();
+			},1500);
+		} else {
+			 transition.next();
+			 console.log('beforeEach');
+		}
+	});
 
 }

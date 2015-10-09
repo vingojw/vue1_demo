@@ -12,11 +12,11 @@
 </template>
 
 <script>
-	// module.exports = {
-	// 	data:function(){
-	// 		return {
-	// 			msg: 'hello'
-	// 		}
-	// 	}
-	// }
+	 module.exports = {
+	 	data:function(){
+	 		return {
+	 			msg: 'hello'
+	 		}
+	 	}
+	 }
 </script>

@@ -1,13 +1,13 @@
 <template>
-  <p>1111about{msg}</p>
+  <p>1111about111{{msg}}</p>
 </template>
 
 <script>
-	module.exports = function(){
+module.exports = {
+	data:function(){
 		return {
-			data: function(){
-				msg : 'about'
-			}
+			msg:'mssage'
 		}
 	}
+};
 </script>
