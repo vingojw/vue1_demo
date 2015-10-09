@@ -1,8 +1,8 @@
 <style>
-/*
+
  .my-component h2 {
 	color:red;
- }*/
+ }
 </style>
 
 <template>
@@ -12,11 +12,11 @@
 </template>
 
 <script>
-	module.exports = {
-		data:function(){
-			return {
-				msg: 'hello'
-			}
-		}
-	}
+	// module.exports = {
+	// 	data:function(){
+	// 		return {
+	// 			msg: 'hello'
+	// 		}
+	// 	}
+	// }
 </script>

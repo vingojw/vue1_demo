@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+
+
+@font-face {font-family: "iconfont";
+  src: url(/build/bc10ad2929174ae49b3330fdc8c3dd5d.woff) format('woff'),
+  url(/build/93cd370ea68891e4188622cba6736784.ttf) format('truetype'),
+  url(/build/b8aca50577bd26bbc7a435276090d0a0.svg#iconfont) format('svg');
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icf-user:before { content: "\E61B"; }
+.icf-arrow-right:before { content: "\E61C"; }
+.icf-change:before { content: "\E626"; }
+.icf-male:before { content: "\E616"; }
+.icf-sales:before { content: "\E600"; }
+.icf-stars:before { content: "\E624"; }
+.icf-brand:before { content: "\E602"; }
+.icf-shop:before { content: "\E612"; }
+.icf-time:before { content: "\E603"; }
+.icf-pay:before { content: "\E604"; }
+.icf-path:before { content: "\E61D"; }
+.icf-gengduo:before { content: "\E61E"; }
+.icf-like:before { content: "\E605"; }
+.icf-area:before { content: "\E606"; }
+.icf-addr:before { content: "\E607"; }
+.icf-add:before { content: "\E60D"; }
+.icf-checked:before { content: "\E609"; }
+.icf-home:before { content: "\E60A"; }
+.icf-add1:before { content: "\E601"; }
+.icf-repair:before { content: "\E608"; }
+.icf-share:before { content: "\E629"; }
+.icf-calendar:before { content: "\E60B"; }
+.icf-star:before { content: "\E614"; }
+.icf-weixin:before { content: "\E618"; }
+.icf-message:before { content: "\E60C"; }
+.icf-edit:before { content: "\E615"; }
+.icf-mianfeibaojia:before { content: "\E62A"; }
+.icf-xie:before { content: "\E62B"; }
+.icf-shield:before { content: "\E619"; }
+.icf-change1:before { content: "\E627"; }
+.icf-pengyouquan:before { content: "\E62E"; }
+.icf-sad:before { content: "\E620"; }
+.icf-tel:before { content: "\E60E"; }
+.icf-gift:before { content: "\E625"; }
+.icf-radio-active:before { content: "\E621"; }
+.icf-info:before { content: "\E60F"; }
+.icf-female:before { content: "\E617"; }
+.icf-radio:before { content: "\E622"; }
+.icf-location:before { content: "\E61F"; }
+.icf-filter:before { content: "\E610"; }
+.icf-coupon:before { content: "\E61A"; }
+.icf-complete:before { content: "\E611"; }
+.icf-scan:before { content: "\E628"; }
+.icf-map:before { content: "\E613"; }
+.icf-right:before { content: "\E623"; }
+.icf-xphoto:before { content: "\E62C"; }
+.icf-add2:before { content: "\E62D"; }
+
+
+
+
+.my-component h2 {
+	color:red;
+ }.view {
+  -webkit-transition: all .5s ease;
+          transition: all .5s ease;
+}
+.test-enter, .test-leave {
+  opacity: 0;
+  -webkit-transform: translate3d(10px, 0, 0);
+          transform: translate3d(10px, 0, 0);
+}
+.v-link-active {
+  color: red;
+}
+[v-cloak] {
+  display: none;
+}
+/*# sourceMappingURL=style.css.map*/
