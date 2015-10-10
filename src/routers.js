@@ -5,14 +5,14 @@ module.exports = function(router){
 			component: require('./views/home.vue')
 		},
 		'/about':{
-			component: require('./components/about.vue')
+			component: require('./views/about.vue')
 		},
 		'/my-component': {
 			component: require('./components/my-component.vue')
 		},
 		// not found handler
 	    '*': {
-	      component: require('./components/not-found.vue')
+	      component: require('./views/not-found.vue')
 	    }
 	});
 
@@ -30,6 +30,7 @@ module.exports = function(router){
 	// })
 
 	router.beforeEach(function(transition){
+		//如果是中止，这里可以判断用户登录
 		if(transition.to.path === '/forbidden'){
 			router.app.authenticating = true
 			setTimeout(function(){

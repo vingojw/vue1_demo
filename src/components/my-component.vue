@@ -15,7 +15,7 @@
 	 module.exports = {
 	 	data:function(){
 	 		return {
-	 			msg: 'hello'
+	 			msg: 'message from my-component'
 	 		}
 	 	}
 	 }
