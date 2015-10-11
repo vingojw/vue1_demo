@@ -40,7 +40,7 @@ module.exports = function(router){
 			},1500);
 		} else {
 			 transition.next();
-			 console.log('beforeEach');
+			 console.log('每次路由开始的时候beforeEach');
 		}
 	});
 
