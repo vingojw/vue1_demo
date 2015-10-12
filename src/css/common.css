@@ -62,3 +62,8 @@
 .icf-right:before { content: "\e623"; }
 .icf-xphoto:before { content: "\e62c"; }
 .icf-add2:before { content: "\e62d"; }
+
+
+body{
+	overflow: hidden;
+}

@@ -7,12 +7,17 @@ module.exports = function(router){
 		'/about':{
 			component: require('./views/about.vue')
 		},
-		'/my-component': {
-			component: require('./components/my-component.vue')
+		'/my_views': {
+			name:'my_views',
+			component: require('./views/my_views.vue')
+		},
+		'/my_views/:viewsId': {
+			name:'views_deital',
+			component: require('./views/my_views_detail.vue')
 		},
 		// not found handler
 	    '*': {
-	      component: require('./views/not-found.vue')
+	      component: require('./views/not_found.vue')
 	    }
 	});
 
