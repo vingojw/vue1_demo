@@ -46,7 +46,6 @@
 		    },
 			data: function(transition) {
 				var _this = this;
-				debugger;
 				console.log('3-data--在 data 中获取数据比在 activate 中更加合理 见http://vuejs.github.io/vue-router/zh-cn/pipeline/data.html');
 
 					setTimeout(function(){

@@ -46,6 +46,15 @@
     <a v-link="{ path: '/nofound' }">弹窗</a>
     <!-- <router-view class="view" transition="fade" transition-mode="out-in"></router-view> -->
     <router-view class="view" transition="fade" transition-mode="out-in"></router-view>
+    <button id="show-modal" v-on:click="showModal = true">Show Modal</button>
+    <modal :show.sync="showModal"> <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325-->
+      <!--
+        you can use custom content here to overwrite
+        default content
+      -->
+      <h3 slot="body">自定义的头部</h3>
+      <h3 slot="header">内容</h3>
+    </modal>
 
   </div>
 </template>
@@ -54,8 +63,24 @@
 module.exports = {
     data: function() {
       return {
+        showLogin: false,
+        showAside: false,
+        showModal:false,
         authenticating: false
       };
+    },
+    components:{
+      modal:require('./components/modal.vue')
+    },
+    created:function(){
+      this.$on('confirmCallback',function(child){
+        console.log(child);
+        console.log('confirmCallback');
+      });
+      this.$on('cancelCallback',function(child){
+        console.log(child);
+        console.log('cancelCallback');
+      });
     }
 }
 
