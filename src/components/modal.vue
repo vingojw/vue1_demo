@@ -1,5 +1,5 @@
 <template>
-      <div class="modal-mask" v-show="show" transition="modal">
+      <div class="modal-mask" v-show="show" @click="show = false" transition="modal">
         <div class="modal-wrapper">
           <div class="modal-container">
             <div class="modal-header">
@@ -10,13 +10,14 @@
             <div class="modal-body">
               <slot name="body">
                 default body
+
               </slot>
             </div>
             <div class="modal-footer">
               <slot name="footer">
                 default footer
-
-				<button class="modal-default-button" v-on:click="confirmCallback">
+        <input type="text" v-el:inp >
+				<button class="modal-default-button" @click="confirmCallback">
 					OK
 				</button>
 				<button class="modal-default-button" v-on:click="cancelCallback">
@@ -59,7 +60,10 @@
 			confirmCallback: function(){
 				this.show = false;
 				this.$dispatch('confirmCallback',this);
-			}
+			},
+      keyupcallback:function(){
+        console.log('duang~');
+      }
 		}
 	}
 </script>

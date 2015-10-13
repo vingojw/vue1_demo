@@ -46,16 +46,16 @@
     <a v-link="{ path: '/nofound' }">弹窗</a>
     <!-- <router-view class="view" transition="fade" transition-mode="out-in"></router-view> -->
     <router-view class="view" transition="fade" transition-mode="out-in"></router-view>
-    <button id="show-modal" v-on:click="showModal = true">Show Modal</button>
+    <button id="show-modal" @click="showModal = true">Show Modal</button>
     <modal :show.sync="showModal"> <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325-->
       <!--
         you can use custom content here to overwrite
         default content
       -->
+
       <h3 slot="body">自定义的头部</h3>
       <h3 slot="header">内容</h3>
     </modal>
-
   </div>
 </template>
 
@@ -74,7 +74,11 @@ module.exports = {
     },
     created:function(){
       this.$on('confirmCallback',function(child){
+        //设置元素的值
+        //child.$els.inp.$set('value','1');
         console.log(child);
+        //获取dom元素  child.$els.inp
+        console.log(child.$els.inp.value);
         console.log('confirmCallback');
       });
       this.$on('cancelCallback',function(child){
