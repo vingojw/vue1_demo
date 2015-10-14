@@ -51,6 +51,7 @@ nav > a{
     <a v-link="{ path: '/forbidden' }">forbidden</a>
     <a v-link="{ path: '/nofound' }">404</a>
     <a v-link="{ path: '/modal_view' }">含有弹窗的页面</a>
+    <a v-link="{ name: 'select_view' }">含有select的页面</a>
     <button id="show-modal" @click="showModal = true">Show Modal</button>
     </nav>
     <!-- <router-view class="view" transition="fade" transition-mode="out-in"></router-view> -->

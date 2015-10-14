@@ -18,6 +18,10 @@ module.exports = function(router){
 		'/modal_view': {
 			component: require('./views/modal_view.vue')
 		},
+		'/select_view': {
+			name:'select_view',
+			component: require('./views/select_view.vue')
+		},
 		// not found handler
 	    '*': {
 	      component: require('./views/not_found.vue')
