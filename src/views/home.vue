@@ -1,3 +1,3 @@
 <template>
-  <p>首屏</p>
+  <div>首屏</div>
 </template>

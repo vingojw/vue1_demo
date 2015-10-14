@@ -7,10 +7,10 @@
 
 <template>
 <div class="view-detail"> <!--要使用 $loadingRouteData 过渡效果的时候 不能用作片段，必须要在最外层包一层div-->
-	这里是{{a}}
+	<p>请求参数{{$route.params | json}}</p>
+	<div v-if="$loadingRouteData">正在加载.....</div>
+	<span v-text="a"></span>
 
-	<div v-if="$loadingRouteData">loading.....</div>
-	{{$route.query | json}}
 </div>
 </template>
 
@@ -19,15 +19,15 @@
 	 module.exports = {
 	 	data:function(){
 	 		return {
-	 			a:'a value is temp'
+	 			a:''
 	 		}
 	 	},
 	 	//这里才是route的生存周期
 	 	route:{
 			data: function(transition) {
 				setTimeout(function(){
-					transition.next({a:1});
-				},3000);
+					transition.next({a:'通过' + JSON.stringify(this.$route.params) + '获取的值'});
+				}.bind(this),3000);
 			}
 	 	}
 	 }

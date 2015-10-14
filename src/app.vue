@@ -2,6 +2,8 @@
 
 .view {
   transition: all .3s ease;
+  border:2px solid red;
+  margin-top:20px;
 }
 .fade-enter, .fade-leave {
   opacity: 0;
@@ -29,33 +31,41 @@
 }
 /*css next 测试*/
 
-.app > a{
-  display:block;
+nav > a{
+  background:#369;
+  color:#fff;
+  padding:3px 5px;
+  display: inline-block;
 }
+
 </style>
 
 <template>
   <div class="app">
     <p v-if="authenticating" style="color:red">Authenticating...</p>
-    <h1>App Header</h1>
+    <h1 v-text="header">App Header</h1>
+    <nav>
     <a v-link="{ path: '/my_views' }">my-views</a>
     <a v-link="{ name: 'views_deital',params: {viewsId:123} }">my-views --> viewId:123</a>
     <a v-link="{ path: '/about' }">about</a>
     <a v-link="{ path: '/forbidden' }">forbidden</a>
     <a v-link="{ path: '/nofound' }">404</a>
-    <a v-link="{ path: '/nofound' }">弹窗</a>
+    <a v-link="{ path: '/modal_view' }">含有弹窗的页面</a>
+    <button id="show-modal" @click="showModal = true">Show Modal</button>
+    </nav>
     <!-- <router-view class="view" transition="fade" transition-mode="out-in"></router-view> -->
     <router-view class="view" transition="fade" transition-mode="out-in"></router-view>
-    <button id="show-modal" @click="showModal = true">Show Modal</button>
-    <modal :show.sync="showModal"> <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325-->
+
+    <modal :show.sync="showModal" v-ref:index-modal> <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325-->
       <!--
         you can use custom content here to overwrite
         default content
       -->
 
-      <h3 slot="body">自定义的头部</h3>
+      <h3 slot="body"><span v-text="modalbody"></span></h3>
       <h3 slot="header">内容</h3>
     </modal>
+
   </div>
 </template>
 
@@ -63,16 +73,19 @@
 module.exports = {
     data: function() {
       return {
+        header:'首页',
         showLogin: false,
         showAside: false,
         showModal:false,
-        authenticating: false
+        authenticating: false,
+        modalbody:"可以通过在组件中调用 this.$parent.modalbody='' 来修改这里的内容"
       };
     },
     components:{
       modal:require('./components/modal.vue')
     },
     created:function(){
+
       this.$on('confirmCallback',function(child){
         //设置元素的值
         //child.$els.inp.$set('value','1');
@@ -80,11 +93,23 @@ module.exports = {
         //获取dom元素  child.$els.inp
         console.log(child.$els.inp.value);
         console.log('confirmCallback');
+        console.log('1秒钟后跳转到 my-views');
+        setTimeout(function(){
+           this.$root.$route.router.go('/my_views');
+           child.show = false;
+        }.bind(this),1000);
+
+        //debugger;
       });
       this.$on('cancelCallback',function(child){
         console.log(child);
         console.log('cancelCallback');
       });
+    },
+    methods:{
+      nonBreaking:function(){
+        console.log('nonBreaking');
+      }
     }
 }
 

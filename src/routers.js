@@ -15,6 +15,9 @@ module.exports = function(router){
 			name:'views_deital',
 			component: require('./views/my_views_detail.vue')
 		},
+		'/modal_view': {
+			component: require('./views/modal_view.vue')
+		},
 		// not found handler
 	    '*': {
 	      component: require('./views/not_found.vue')
