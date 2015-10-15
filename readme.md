@@ -1,3 +1,4 @@
+## 目录结构
 <pre>
 │  .gitignore          # 忽略无需git控制的文件  比如 node_modules
 │  package.json        # 项目配置
@@ -22,4 +23,10 @@
             about.vue
             home.vue
             not-found.vue
-</pre>            
+</pre>
+
+## Setup
+``` bash
+npm install
+npm run dev
+```

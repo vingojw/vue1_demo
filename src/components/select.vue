@@ -1,18 +1,18 @@
 <template>
 <div>
-	<slot name="title">default title</slot>
-
+<!-- div.select_components_mask 类根据堆叠关系 不用设置z-index -->
+<div class="select_components_mask" v-show="show" @click.stop="show=false"></div>
+  <slot name="title">default title</slot>
    <div class="select" @click.stop="show=!show">
     <div class="select-content">{{chooseval}}</div>
-    <div class="select-arrow">
+    <div class="select_arrow">
       <span></span>
     </div>
-    <ul class="select-wrap" :class="{ 'hide': !show }">
+    <ul class="select_wrap" :class="{ 'hide': !show }">
         <li v-for="d in items" :class="{ 'hover': d.hover }" @mouseout="mouseout(d,$index)" @mouseover="mouseover(d,$index)" @click="choose"> {{ d.text }} </li>
     </ul>
   </div>
-
-</div>  
+</div>
 </template>
 
 <script>
@@ -34,17 +34,31 @@
 			},
 			choose:function(e){
 				this.chooseval = e.target.innerHTML;
-			}
+			},
+      hideWrap:function(){
+        this.show = false;
+        console.log('隐藏hideWrap');
+      }
 		},
 		ready:function(){
-			document.body.addEventListener('click',function(){
-				this.show = false;
-			}.bind(this),false);
-		}
+      //document.body.addEventListener('click',this.hideWrap,false);
+		},
+    destroyed:function(){
+      // document.body.removeEventListener('click',this.hideWrap,false);
+      // console.log('组件销毁');
+    }
 	}
 </script>
 
 <style>
+    .select_components_mask{
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      background: transparent;
+    }
     .select{
       width:325px;
       height:40px;
@@ -59,7 +73,7 @@
       cursor:default;
     }
 
-    .select-arrow{
+    .select_arrow{
       width:38px;
       height:38px;
       position: absolute;
@@ -67,7 +81,7 @@
       top:1px;
       background:#ddd;
     }
-    .select-arrow span{
+    .select_arrow span{
       position:absolute;
       margin:13px;
       width: 0;
@@ -76,7 +90,7 @@
       border-right: 7px solid transparent;
       border-top: 14px solid #999;
     }
-    .select-wrap{
+    .select_wrap{
       margin: 0 0 0 -1px;;
       padding: 0;
       position: absolute;
@@ -86,16 +100,16 @@
       border:1px solid #ddd;
       background:#fff;
     }
-    .select-wrap li{
+    .select_wrap li{
       height:40px;
       line-height: 40px;
       padding-left:18px;
       color:#000;
     }
-    .select-wrap li.hover{
+    .select_wrap li.hover{
       background:#3e3e3e;
     }
-    .select-wrap.hide{
+    .select_wrap.hide{
       display: none;
     }
 

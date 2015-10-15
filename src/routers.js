@@ -5,17 +5,19 @@ module.exports = function(router){
 			component: require('./views/home.vue')
 		},
 		'/about':{
+			name:'about',
 			component: require('./views/about.vue')
 		},
 		'/my_views': {
 			name:'my_views',
 			component: require('./views/my_views.vue')
 		},
-		'/my_views/:viewsId': {
-			name:'views_deital',
+		'/my_views/:viewId': {
+			name:'my_views_detail',
 			component: require('./views/my_views_detail.vue')
 		},
 		'/modal_view': {
+			name:'modal_view',
 			component: require('./views/modal_view.vue')
 		},
 		'/select_view': {

@@ -19,7 +19,8 @@
 	 module.exports = {
 	 	data:function(){
 	 		return {
-	 			a:''
+	 			a:'',
+	 			title:'详情'
 	 		}
 	 	},
 	 	//这里才是route的生存周期
@@ -28,6 +29,10 @@
 				setTimeout(function(){
 					transition.next({a:'通过' + JSON.stringify(this.$route.params) + '获取的值'});
 				}.bind(this),3000);
+			},
+			activate:function(transition){
+				this.$root.$set('header',this.title);
+				transition.next();
 			}
 	 	}
 	 }

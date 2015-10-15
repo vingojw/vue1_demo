@@ -23,6 +23,12 @@
 		},
 		components:{
 			modal:require('../components/modal.vue')
+		},
+		route:{
+			activate:function(transition){
+				this.$root.$set('header',this.modalbody);
+				transition.next();
+			}
 		}
 	}
 </script>

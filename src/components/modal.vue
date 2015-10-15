@@ -1,5 +1,5 @@
 <template>
-		<div class="modal-mask" v-show="show" transition="modal">
+		<div class="modal-mask" v-if="show" transition="modal" transition-mode="out-in">
 			<div class="modal-wrapper" v-el:overlay @click.stop="modelclick" >
 				<div class="modal-container">
 					<div class="modal-header">

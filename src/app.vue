@@ -45,9 +45,9 @@ nav > a{
     <p v-if="authenticating" style="color:red">Authenticating...</p>
     <h1 v-text="header">App Header</h1>
     <nav>
-    <a v-link="{ path: '/my_views' }">my-views</a>
-    <a v-link="{ name: 'views_deital',params: {viewsId:123} }">my-views --> viewId:123</a>
-    <a v-link="{ path: '/about' }">about</a>
+    <a v-link="{ name: 'my_views' }">my-views</a>
+    <a v-link="{ name: 'my_views_detail', params: { viewId:vvv } }">my-views --> viewId:123</a>
+    <a v-link="{ name: 'about' }">about</a>
     <a v-link="{ path: '/forbidden' }">forbidden</a>
     <a v-link="{ path: '/nofound' }">404</a>
     <a v-link="{ path: '/modal_view' }">含有弹窗的页面</a>
@@ -74,6 +74,7 @@ nav > a{
 module.exports = {
     data: function() {
       return {
+        vvv:'参数',
         header:'首页',
         showLogin: false,
         showAside: false,
