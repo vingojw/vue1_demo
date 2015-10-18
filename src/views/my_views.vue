@@ -40,7 +40,7 @@
 		    activate:function(transition){
 		    	//console.log('active');
 		    	console.log('2-activate');
-		    	this.$root.$set('head',this.title);
+		    	this.$root.$set('header',this.title);
 		    	transition.next();
 
 		    	//此方法结束后，api会调用afterActivate 方法

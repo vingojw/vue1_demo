@@ -67,10 +67,22 @@ nav > a{
       <h3 slot="header">内容</h3>
     </modal>
 
+<button @click="awesomeSheetHanlder">显示隐藏底部菜单</button>
+<div id="awesome-sheet">
+  <div class="sheet">
+    <div class="item">sheet 1</div>
+    <div class="item">sheet 1</div>
+    <div class="item"><button @click="awesomeSheetHanlder">显示隐藏底部菜单</button></div>
+  </div>
+</div>
+
   </div>
 </template>
 
 <script>
+require('awesomesheet/lib/AwesomeSheet.css');
+var AwesomeSheet = require('awesomesheet');
+
 module.exports = {
     data: function() {
       return {
@@ -80,6 +92,8 @@ module.exports = {
         showAside: false,
         showModal:false,
         authenticating: false,
+        showAwesomeSheet:false,
+        as:{},
         modalbody:"可以通过在组件中调用 this.$parent.modalbody='' 来修改这里的内容"
       };
     },
@@ -107,11 +121,19 @@ module.exports = {
         console.log(child);
         console.log('cancelCallback');
       });
+
     },
     methods:{
       nonBreaking:function(){
         console.log('nonBreaking');
+      },
+      //底部菜单
+      awesomeSheetHanlder:function(){
+        this.as[(this.showAwesomeSheet = !this.showAwesomeSheet) ? 'show':'hide']();
       }
+    },
+    ready:function(){
+      this.$set('as',new AwesomeSheet({ touchDismiss: false }));
     }
 }
 
