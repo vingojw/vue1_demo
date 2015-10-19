@@ -1,3 +1,9 @@
+## Setup
+``` bash
+npm install
+npm run dev
+```
+
 ## 目录结构
 <pre>
 │  .gitignore          # 忽略无需git控制的文件  比如 node_modules
@@ -25,8 +31,4 @@
             not-found.vue
 </pre>
 
-## Setup
-``` bash
-npm install
-npm run dev
-```
+
