@@ -17,7 +17,7 @@
     "vue": "yyx990803/vue#1.0.0-alpha.7",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^4.0.4",
-    "vue-router": "^0.7.1",
+    "vue-router": "^0.7.2",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1"
   },

@@ -7,7 +7,7 @@
 }
 .fade-enter, .fade-leave {
   opacity: 0;
-  transform: translate3d(0, 5px, 0);
+  transform: translate3d(0, -5px, 0);
 }
 /*.v-link-active {
   color: red;
@@ -67,21 +67,29 @@ nav > a{
       <h3 slot="header">内容</h3>
     </modal>
 
-<button @click="awesomeSheetHanlder">显示隐藏底部菜单</button>
-<div id="awesome-sheet">
-  <div class="sheet">
-    <div class="item">sheet 1</div>
-    <div class="item">sheet 1</div>
-    <div class="item"><button @click="awesomeSheetHanlder">显示隐藏底部菜单</button></div>
-  </div>
-</div>
+    <aside v-ref:aside>
+      <div slot="body">
+          <h4>Text in aside</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p> Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+          <pre class=" language-javascript" data-language="JavaScript"><code class=" language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>talk <span class="token operator">===</span> cheap<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  code<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span>
+<span class="token punctuation">}</span>
+        </code></pre>
+        <div class="aside-footer">
+          <button type="button" class="btn btn-default">Close</button>
+        </div>
+
+      </div>
+    </aside>
 
   </div>
 </template>
 
 <script>
-require('awesomesheet/lib/AwesomeSheet.css');
-var AwesomeSheet = require('awesomesheet');
 
 module.exports = {
     data: function() {
@@ -129,11 +137,11 @@ module.exports = {
       },
       //底部菜单
       awesomeSheetHanlder:function(){
-        this.as[(this.showAwesomeSheet = !this.showAwesomeSheet) ? 'show':'hide']();
+        //this.as[(this.showAwesomeSheet = !this.showAwesomeSheet) ? 'show':'hide']();
       }
     },
     ready:function(){
-      this.$set('as',new AwesomeSheet({ touchDismiss: false }));
+      //this.$set('as',new AwesomeSheet({ touchDismiss: false }));
     }
 }
 
