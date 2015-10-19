@@ -52,22 +52,43 @@ nav > a{
     <a v-link="{ path: '/nofound' }">404</a>
     <a v-link="{ path: '/modal_view' }">含有弹窗的页面</a>
     <a v-link="{ name: 'select_view' }">含有select的页面</a>
-    <button id="show-modal" @click="showModal = true">Show Modal</button>
+    <button @click="showModal = !showModal">Show Modal</button>
+    <button @click="showRight = true">Show Aside</button>
     </nav>
     <!-- <router-view class="view" transition="fade" transition-mode="out-in"></router-view> -->
     <router-view class="view" transition="fade" transition-mode="out-in"></router-view>
 
-    <modal :show.sync="showModal" v-ref:index-modal> <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325-->
+    <modal :show.sync="showModal" v-ref:index-modal> <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325 搜 Shorthands -->
       <!--
-        you can use custom content here to overwrite
-        default content
+
+        你可以添加自定义的内容
+        比如：可以通过
+
+          <h3 slot="body">自定义内容</h3>
+
+        然后在组件模板（modal.vue）中
+        ···                                          ···
+        <div class="modal-body">                     <div class="modal-body">
+          <slot name="body">
+            default body           最终会生成 =>        <h3 slot="body">自定义内容</h3>
+          </slot>
+        </div>                                       </div>
+        ···                                          ···
+
+        如果不定义 <h3 slot="body">自定义内容</h3> ，那么就是
+        ···
+        <div class="modal-body">
+            default body
+        </div>
+        ···
+
       -->
 
       <h3 slot="body"><span v-text="modalbody"></span></h3>
       <h3 slot="header">内容</h3>
     </modal>
 
-    <aside v-ref:aside>
+    <asidebar v-ref:aside :show.sync="showRight"  :placement="right"  :header="title"  :width="asidewidth">
       <div slot="body">
           <h4>Text in aside</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -84,7 +105,7 @@ nav > a{
         </div>
 
       </div>
-    </aside>
+    </asidebar>
 
   </div>
 </template>
@@ -94,19 +115,22 @@ nav > a{
 module.exports = {
     data: function() {
       return {
-        vvv:'参数',
-        header:'首页',
-        showLogin: false,
-        showAside: false,
-        showModal:false,
-        authenticating: false,
-        showAwesomeSheet:false,
-        as:{},
-        modalbody:"可以通过在组件中调用 this.$parent.modalbody='' 来修改这里的内容"
+        vvv            : '参数',
+        header         : '首页',
+        showModal      : false,
+        authenticating : false,
+        showLeft       : false, //用于aside
+        showRight      : false,//用于aside
+        right          : 'right',//用于aside
+        title          : 'title',//用于aside
+        asidewidth     : 350,//用于aside
+
+        modalbody      : "可以通过在组件中调用 this.$parent.modalbody='' 来修改这里的内容"
       };
     },
     components:{
-      modal:require('./components/modal.vue')
+      modal:require('./components/modal.vue'),
+      asidebar:require('./components/aside.vue')
     },
     created:function(){
 

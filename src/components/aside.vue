@@ -1,16 +1,16 @@
 <template>
   <div class="aside"
-    v-style="width:width + 'px'"
-    v-class="
+    :style="width:width + 'px'"
+    :class="
     left:placement === 'left',
     right:placement === 'right'
     "
-    v-show="show"
-    v-transition="{{this.placement === 'left' ? 'slideleft' : 'slideright'}}">
+    v-if="show"
+    transition="{{this.placement === 'left' ? 'slideleft' : 'slideright'}}">
     <div class="aside-dialog">
       <div class="aside-content">
         <div class="aside-header">
-          <button type="button" class="close" v-on='click:close'><span>&times;</span></button>
+          <button type="button" class="close" @click='close'><span>&times;</span></button>
           <h4 class="aside-title">{{header}}</h4>
         </div>
         <div class="aside-body">
@@ -28,8 +28,7 @@
 		props: {
       show: {
         type: Boolean,
-        require: true,
-        twoWay: true
+        require: true
       },
       placement: {
         type: String,
