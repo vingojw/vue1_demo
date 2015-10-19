@@ -53,7 +53,8 @@ nav > a{
     <a v-link="{ path: '/modal_view' }">含有弹窗的页面</a>
     <a v-link="{ name: 'select_view' }">含有select的页面</a>
     <button @click="showModal = !showModal">Show Modal</button>
-    <button @click="showRight = true">Show Aside</button>
+    <button @click="showRight = true">Show Aside right</button>
+    <button @click="showLeft = true">Show Aside left</button>
     </nav>
     <!-- <router-view class="view" transition="fade" transition-mode="out-in"></router-view> -->
     <router-view class="view" transition="fade" transition-mode="out-in"></router-view>
@@ -88,7 +89,7 @@ nav > a{
       <h3 slot="header">内容</h3>
     </modal>
 
-    <asidebar v-ref:aside :show.sync="showRight"  :placement="right"  :header="title"  :width="asidewidth">
+    <asidebar v-ref:aside  :show.sync="showRight"  :placement="right"  :header="title"  :width="asidewidth">
       <div slot="body">
           <h4>Text in aside</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -106,7 +107,24 @@ nav > a{
 
       </div>
     </asidebar>
+    <asidebar v-ref:aside  :show.sync="showLeft"  :placement="left"  :header="title"  :width="asidewidth">
+      <div slot="body">
+          <h4>Text in aside</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p> Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+          <pre class=" language-javascript" data-language="JavaScript"><code class=" language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>talk <span class="token operator">===</span> cheap<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  code<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span>
+<span class="token punctuation">}</span>
+        </code></pre>
+        <div class="aside-footer">
+          <button type="button" class="btn btn-default">Close</button>
+        </div>
 
+      </div>
+    </asidebar>
   </div>
 </template>
 
@@ -120,7 +138,7 @@ module.exports = {
         showModal      : false,
         authenticating : false,
         showLeft       : false, //用于aside
-        showRight      : false,//用于aside
+        showRight      : false, //用于aside
         right          : 'right',//用于aside
         title          : 'title',//用于aside
         asidewidth     : 350,//用于aside

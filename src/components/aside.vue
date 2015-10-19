@@ -1,12 +1,10 @@
 <template>
+<div class="aside_components_mask" v-if="show" transition="modal" @click.stop="show=false"></div>
   <div class="aside"
-    :style="width:width + 'px'"
-    :class="
-    left:placement === 'left',
-    right:placement === 'right'
-    "
+    v-bind:style="{width: this.width + 'px'}"
+    v-bind:class="{ 'left': this.placement=='left', 'right': this.placement=='right' }"
     v-if="show"
-    transition="{{this.placement === 'left' ? 'slideleft' : 'slideright'}}">
+    transition="{{this.placement=='left'?'slideleft':'slideright'}}">
     <div class="aside-dialog">
       <div class="aside-content">
         <div class="aside-header">
@@ -21,6 +19,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -58,6 +57,15 @@
 </script>
 
 <style>
+  .aside_components_mask{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,.5);
+    transition: opacity .3s ease;
+  }
   .aside-open {
     transition: transform 0.3s;
   }
