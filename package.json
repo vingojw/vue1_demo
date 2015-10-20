@@ -22,7 +22,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --inline  ",
-    "port": "webpack-dev-server --inline --port 9090 "
+    "port": "webpack-dev-server --inline --port 9090 ",
+    "cp": "cp -r index.html ./build/ d:/wamp/www/vue"
   },
   "author": "",
   "license": "ISC"
