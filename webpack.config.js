@@ -14,7 +14,10 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var plugins = [
   //会将所有的样式文件打包成一个单独的style.css
-  new ExtractTextPlugin("style.css", {disable: false}),
+  new ExtractTextPlugin("style.css", {
+    disable: false,
+    //allChunks: true  //所有独立样式打包成一个css文件
+  }),
   //new ExtractTextPlugin("[name].css" )
   //自动分析重用的模块并且打包成单独的文件
   new CommonsChunkPlugin('vendor.js')

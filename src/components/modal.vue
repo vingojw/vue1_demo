@@ -59,12 +59,11 @@
 				console.log('duang~');
 			},
 			modelclick:function(e){
-
 				console.log(e.target);
-				console.log(this.$$.overlay);
+				console.log(this.$els.overlay);
 				//因为想实现只点击背景层隐藏modal
 				//处理由于冒泡，点击了里面的内容，也导致overlayer隐藏的问题
-				if( e.target === this.$$.overlay ){
+				if( e.target === this.$els.overlay ){
 					//点击遮罩层，隐藏modal
 					this.show = false;
 				}

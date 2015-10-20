@@ -24,6 +24,10 @@ module.exports = function(router){
 			name:'select_view',
 			component: require('./views/select_view.vue')
 		},
+		'/radio_view': {
+			name:'radio_view',
+			component: require('./views/radio_view.vue')
+		},
 		// not found handler
 	    '*': {
 	      component: require('./views/not_found.vue')

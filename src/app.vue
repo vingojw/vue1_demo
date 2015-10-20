@@ -52,13 +52,16 @@ nav > a{
     <a v-link="{ path: '/nofound' }">404</a>
     <a v-link="{ path: '/modal_view' }">含有弹窗的页面</a>
     <a v-link="{ name: 'select_view' }">含有select的页面</a>
+    <a v-link="{ name: 'radio_view' }">含有radio的页面</a>
     <button @click="showModal = !showModal">Show Modal</button>
     <button @click="showLeftAside = true">Show Aside left</button>
     <button @click="showRightAside = true">Show Aside right</button>
+    <button @click="showTopAside = true">Show Aside top</button>
+    <button @click="showBottomAside = true">Show Aside bottom</button>
     </nav>
     <router-view class="view" transition="fade" transition-mode="out-in"></router-view>
 
-    <modal :show.sync="showModal" v-ref:index-modal> <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325 搜 Shorthands -->
+    <modal :show.sync="showModal" v-ref:index-modal > <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325 搜 Shorthands -->
       <!--
 
         你可以添加自定义的内容
@@ -88,19 +91,43 @@ nav > a{
       <h3 slot="header">内容</h3>
     </modal>
 
+    <!--右-->
     <asidebar v-ref:asideR  :show.sync="showRightAside"  :placement.sync="right"  :header.sync="asideLeftTit"  :width.sync="asidewidth">
       <div slot="body">
+      <!--自定义内容-->
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea praesentium repudiandae accusantium nostrum doloribus voluptas accusamus consectetur quod inventore provident magni id sit, dolor harum totam. Odio ducimus error architecto.
         <div class="aside-footer">
           <button type="button" class="btn btn-default" @click="showRightAside=false">在组件声明的时候定义的close事件</button>
         </div>
       </div>
     </asidebar>
+    <!--左-->
     <asidebar v-ref:asideL  :show.sync="showLeftAside"  :placement.sync="left"  :header.sync="asideRightTit"  :width.sync="asidewidth">
       <div slot="body">
+        <!--自定义内容-->
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea praesentium repudiandae accusantium nostrum doloribus voluptas accusamus consectetur quod inventore provident magni id sit, dolor harum totam. Odio ducimus error architecto.
         <div class="aside-footer">
           <button type="button" class="btn btn-default" @click="showLeftAside=false">在组件声明的时候定义的close事件</button>
+        </div>
+      </div>
+    </asidebar>
+    <!--上-->
+    <asidebar v-ref:asideL  :show.sync="showTopAside"  :placement.sync="top"  :header.sync="asideTopTit" >
+      <div slot="body">
+        <!--自定义内容-->
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea praesentium repudiandae accusantium nostrum doloribus voluptas accusamus consectetur quod inventore provident magni id sit, dolor harum totam. Odio ducimus error architecto.
+        <div class="aside-footer">
+          <button type="button" class="btn btn-default" @click="showTopAside=false">在组件声明的时候定义的close事件</button>
+        </div>
+      </div>
+    </asidebar>
+    <!--下-->
+    <asidebar v-ref:asideL  :show.sync="showBottomAside"  :placement.sync="bottom"  :header.sync="asideBottomTit" >
+      <div slot="body">
+        <!--自定义内容-->
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea praesentium repudiandae accusantium nostrum doloribus voluptas accusamus consectetur quod inventore provident magni id sit, dolor harum totam. Odio ducimus error architecto.
+        <div class="aside-footer">
+          <button type="button" class="btn btn-default" @click="showBottomAside=false">在组件声明的时候定义的close事件</button>
         </div>
       </div>
     </asidebar>
@@ -112,21 +139,26 @@ nav > a{
 module.exports = {
     data: function() {
       return {
-        vvv            : '参数',        //用于 传参
-        header         : '首页',
-        showModal      : false,         //用于 modal
-        authenticating : false,         //用于 forbidden
-        showAside       : false,        //用于 aside
-        right          : 'right',       //用于 aside
-        left           : 'left',        //用于 aside
-        showRightAside : false,
-        showLeftAside  : false,
-        asideLeftTit   : 'left-title',  //用于 aside
-        asideRightTit  : 'right-title', //用于 aside
-        title          : 'title',       //用于 aside
-        asidewidth     : 350,           //用于 aside
-
-        modalbody      : "可以通过在组件中调用 this.$parent.modalbody='' 来修改这里的内容"
+        vvv             : '参数',        //用于 传参
+        header          : '首页',
+        showModal       : false,         //用于 modal
+        authenticating  : false,         //用于 forbidden
+        showAside       : false,         //用于 aside
+        right           : 'right',       //用于 aside
+        left            : 'left',        //用于 aside
+        top             : 'top',         //用于 aside
+        bottom          : 'bottom',      //用于 aside
+        showRightAside  : false,         //用于 asideaside 方向
+        showLeftAside   : false,         //用于 asideaside 方向
+        showTopAside    : false,         //用于 asideaside 方向
+        showBottomAside : false,         //用于 asideaside 方向
+        asideLeftTit    : 'left-title',  //用于 aside
+        asideRightTit   : 'right-title', //用于 aside
+        asideTopTit     : 'right-title', //用于 aside
+        asideBottomTit  : 'right-title', //用于 aside
+        title           : 'title',       //用于 aside
+        asidewidth      : 350,           //用于 aside
+        modalbody       : "可以通过在组件中调用 this.$parent.modalbody='' 来修改这里的内容"
       };
     },
     components:{
@@ -134,8 +166,12 @@ module.exports = {
       asidebar:require('./components/aside.vue')
     },
     created:function(){
-      //组件的事件传播
-      this.$on('confirmCallback',function(child){
+
+    },
+    //组件事件通信
+    //子组件可以通过 this.$dispatch('confirmCallback',this); 来触发父组件events中声明的事件
+    events:{
+      confirmCallback:function(child){
         //设置元素的值
         //child.$els.inp.$set('value','1');
         console.log(child);
@@ -149,12 +185,11 @@ module.exports = {
         }.bind(this),1000);
 
         //debugger;
-      });
-      this.$on('cancelCallback',function(child){
-        console.log(child);
-        console.log('cancelCallback');
-      });
+      },
+      cancelCallback:function(child){
 
+        console.log('modal-cancelCallback');
+      }
     },
     methods:{
       nonBreaking:function(){

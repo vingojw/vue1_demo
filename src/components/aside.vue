@@ -1,10 +1,10 @@
 <template>
 <div class="aside_components_mask" v-if="show" transition="modal" @click.stop="show=false"></div>
   <div class="aside"
-    v-bind:style="{width: this.width + 'px'}"
-    v-bind:class="{ 'left': isSlideLeft , 'right' : !isSlideLeft }"
+    :style="{width : width ? width+'px' : ''}"
+    :class="placement"
     v-if="show"
-    transition="{{placement == 'left' ? 'slideleft' : 'slideright'}}">
+    :transition="slideTransition"> <!--这里 相当于 v-bind:transition="slideTransition"  -->
     <div class="aside-dialog">
       <div class="aside-content">
         <div class="aside-header">
@@ -15,7 +15,6 @@
     <dl>
       <dt>props参数：</dt>
       <dt>width:{{width}} </dt>
-      <dt>试试自定义宽度 <input type="text" v-model="width" lazy/></dt>
       <dt>placement:{{placement}}</dt>
       <dt>header:{{header}}</dt>
     </dl>
@@ -47,17 +46,35 @@
         default:''
       },
       width: {
-        type: Number,
-        default: 320
+        type: Number
       }
     },
+    filters:{
+      // clearwran:{
+      //   read:function(val){
+      //     return val*1;
+      //   },
+      //   write:function(val,oldVal){
+      //     return val*1;
+      //   }
+      // }
+    },
     computed:{
-      // slideTransition:function(){
-      //   console.log(this.placement );
-      //   return this.placement == 'left' ? 'slideleft' : 'slideright';
-      // },
-      isSlideLeft:function(){
-        return this.placement == 'left' ? true : false;
+      slideTransition:function(){
+        console.log('slide' + this.placement);
+        return 'slide' + this.placement;
+      },
+      sideDirection:function(){
+        //设置方向的时候顺便把样式也设置一下
+
+
+      },
+      styleWidth:function(){
+        //如果不是左右方向，可以无视宽度
+        if(this.placement.replace(/(left|right|\s)/g,'')){
+          return '100%';
+        }
+        return this.width + 'px';
       }
     },
 		methods:{
@@ -109,7 +126,14 @@
     left: auto;
     right: 0;
   }
-
+  .aside.top{
+    top:0;
+    bottom:auto;
+  }
+  .aside.bottom{
+    bottom:0;
+    top:auto;
+  }
   .slideleft-enter {
     animation:slideleft-in .3s;
   }
@@ -163,24 +187,62 @@
     }
   }
 
+  .slidetop-enter {
+    animation:slidetop-in .3s;
+  }
+  .slidetop-leave {
+    animation:slidetop-out .3s;
+  }
+  @keyframes slidetop-in {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slidetop-out {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+
+  .slidebottom-enter {
+    animation:slidebottom-in .3s;
+  }
+  .slidebottom-leave {
+    animation:slidebottom-out .3s;
+  }
+  @keyframes slidebottom-in {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slidebottom-out {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+
   .aside:focus {
       outline: 0
-  }
-
-  @media (max-width: 991px) {
-      .aside {
-          min-width:240px
-      }
-  }
-
-  .aside.left {
-      right: auto;
-      left: 0
-  }
-
-  .aside.right {
-      right: 0;
-      left: auto
   }
 
   .aside .aside-dialog .aside-header {
