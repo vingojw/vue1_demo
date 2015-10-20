@@ -46,11 +46,6 @@
 			// 	default: function(){}
 			// }
 		},
-		data:function(){
-			return {
-				 show1: false
-			}
-		},
 		methods:{
 			cancelCallback:function(){
 				this.show = false;

@@ -53,10 +53,9 @@ nav > a{
     <a v-link="{ path: '/modal_view' }">含有弹窗的页面</a>
     <a v-link="{ name: 'select_view' }">含有select的页面</a>
     <button @click="showModal = !showModal">Show Modal</button>
-    <button @click="showRight = true">Show Aside right</button>
-    <button @click="showLeft = true">Show Aside left</button>
+    <button @click="showLeftAside = true">Show Aside left</button>
+    <button @click="showRightAside = true">Show Aside right</button>
     </nav>
-    <!-- <router-view class="view" transition="fade" transition-mode="out-in"></router-view> -->
     <router-view class="view" transition="fade" transition-mode="out-in"></router-view>
 
     <modal :show.sync="showModal" v-ref:index-modal> <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325 搜 Shorthands -->
@@ -89,40 +88,20 @@ nav > a{
       <h3 slot="header">内容</h3>
     </modal>
 
-    <asidebar v-ref:aside  :show.sync="showRight"  :placement="right"  :header="title"  :width="asidewidth">
+    <asidebar v-ref:asideR  :show.sync="showRightAside"  :placement.sync="right"  :header.sync="asideLeftTit"  :width.sync="asidewidth">
       <div slot="body">
-          <h4>Text in aside</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p> Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat.</p>
-          <pre class=" language-javascript" data-language="JavaScript"><code class=" language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>talk <span class="token operator">===</span> cheap<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  code<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span>
-<span class="token punctuation">}</span>
-        </code></pre>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea praesentium repudiandae accusantium nostrum doloribus voluptas accusamus consectetur quod inventore provident magni id sit, dolor harum totam. Odio ducimus error architecto.
         <div class="aside-footer">
-          <button type="button" class="btn btn-default">Close</button>
+          <button type="button" class="btn btn-default" @click="showRightAside=false">在组件声明的时候定义的close事件</button>
         </div>
-
       </div>
     </asidebar>
-    <asidebar v-ref:aside  :show.sync="showLeft"  :placement="left"  :header="title"  :width="asidewidth">
+    <asidebar v-ref:asideL  :show.sync="showLeftAside"  :placement.sync="left"  :header.sync="asideRightTit"  :width.sync="asidewidth">
       <div slot="body">
-          <h4>Text in aside</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p> Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat.</p>
-          <pre class=" language-javascript" data-language="JavaScript"><code class=" language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>talk <span class="token operator">===</span> cheap<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  code<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span>
-<span class="token punctuation">}</span>
-        </code></pre>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea praesentium repudiandae accusantium nostrum doloribus voluptas accusamus consectetur quod inventore provident magni id sit, dolor harum totam. Odio ducimus error architecto.
         <div class="aside-footer">
-          <button type="button" class="btn btn-default">Close</button>
+          <button type="button" class="btn btn-default" @click="showLeftAside=false">在组件声明的时候定义的close事件</button>
         </div>
-
       </div>
     </asidebar>
   </div>
@@ -133,15 +112,19 @@ nav > a{
 module.exports = {
     data: function() {
       return {
-        vvv            : '参数',
+        vvv            : '参数',        //用于 传参
         header         : '首页',
-        showModal      : false,
-        authenticating : false,
-        showLeft       : false, //用于aside
-        showRight      : false, //用于aside
-        right          : 'right',//用于aside
-        title          : 'title',//用于aside
-        asidewidth     : 350,//用于aside
+        showModal      : false,         //用于 modal
+        authenticating : false,         //用于 forbidden
+        showAside       : false,        //用于 aside
+        right          : 'right',       //用于 aside
+        left           : 'left',        //用于 aside
+        showRightAside : false,
+        showLeftAside  : false,
+        asideLeftTit   : 'left-title',  //用于 aside
+        asideRightTit  : 'right-title', //用于 aside
+        title          : 'title',       //用于 aside
+        asidewidth     : 350,           //用于 aside
 
         modalbody      : "可以通过在组件中调用 this.$parent.modalbody='' 来修改这里的内容"
       };
@@ -151,7 +134,7 @@ module.exports = {
       asidebar:require('./components/aside.vue')
     },
     created:function(){
-
+      //组件的事件传播
       this.$on('confirmCallback',function(child){
         //设置元素的值
         //child.$els.inp.$set('value','1');

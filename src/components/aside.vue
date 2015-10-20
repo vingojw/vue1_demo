@@ -2,14 +2,24 @@
 <div class="aside_components_mask" v-if="show" transition="modal" @click.stop="show=false"></div>
   <div class="aside"
     v-bind:style="{width: this.width + 'px'}"
-    v-bind:class="{ 'left': this.placement=='left', 'right': this.placement=='right' }"
+    v-bind:class="{ 'left': isSlideLeft , 'right' : !isSlideLeft }"
     v-if="show"
-    transition="{{this.placement=='left'?'slideleft':'slideright'}}">
+    transition="{{placement == 'left' ? 'slideleft' : 'slideright'}}">
     <div class="aside-dialog">
       <div class="aside-content">
         <div class="aside-header">
-          <button type="button" class="close" @click='close'><span>&times;</span></button>
+          <button type="button" class="close" @click='close'><span>&times;</span></button> <- 在aside中定义的close事件
           <h4 class="aside-title">{{header}}</h4>
+
+
+    <dl>
+      <dt>props参数：</dt>
+      <dt>width:{{width}} </dt>
+      <dt>试试自定义宽度 <input type="text" v-model="width" lazy/></dt>
+      <dt>placement:{{placement}}</dt>
+      <dt>header:{{header}}</dt>
+    </dl>
+    <pre>
         </div>
         <div class="aside-body">
           <slot name="body">
@@ -30,15 +40,24 @@
         require: true
       },
       placement: {
-        type: String,
-        default: 'right'
+        type: String
       },
       header: {
-        type: String
+        type: String,
+        default:''
       },
       width: {
         type: Number,
-        default: '320'
+        default: 320
+      }
+    },
+    computed:{
+      // slideTransition:function(){
+      //   console.log(this.placement );
+      //   return this.placement == 'left' ? 'slideleft' : 'slideright';
+      // },
+      isSlideLeft:function(){
+        return this.placement == 'left' ? true : false;
       }
     },
 		methods:{
@@ -47,6 +66,8 @@
 			}
 		},
 		ready:function(){
+      //测试，如果在父元素绑定一个el，在这里在绑定事件
+
       //document.body.addEventListener('click',this.hideWrap,false);
 		},
     destroyed:function(){
