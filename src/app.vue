@@ -59,7 +59,7 @@ nav > a{
     <button @click="showTopAside = true">Show Aside top</button>
     <button @click="showBottomAside = true">Show Aside bottom</button>
     </nav>
-    <router-view class="view" transition="fade" transition-mode="out-in"></router-view>
+    <router-view class="view" keep-alive transition="fade" transition-mode="out-in"></router-view>
 
     <modal :show.sync="showModal" v-ref:index-modal > <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325 搜 Shorthands -->
       <!--
