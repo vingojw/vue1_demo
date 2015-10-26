@@ -12,6 +12,7 @@
 <script>
 	module.exports = {
 		data:function(){
+			//因为在 主 vue 里面使用了 keep-alive 标识，所以再次切换到此视图的时候，还是上次切换的状态
 			return {
 				mutilCheckitems:[{text:'选项一',checked:false},{text:'选项二',checked:false},{text:'选项三',checked:false}],
 				singleCheckitems:[{text:'选项一',checked:false},{text:'选项二',checked:false},{text:'选项三',checked:false}],

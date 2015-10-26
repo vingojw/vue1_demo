@@ -48,14 +48,23 @@
 		    },
 			data: function(transition) {
 				var _this = this;
-				console.log('3-data--在 data 中获取数据比在 activate 中更加合理 见http://vuejs.github.io/vue-router/zh-cn/pipeline/data.html');
 
-					setTimeout(function(){
-						//在 transition.next({a:1}) 之前
-						//这里 _this.$loadingRouteData 是 true  因为此时获取
-						transition.next({a:'通过' + JSON.stringify(this.$route.params) + '获取的值'});
-						//这里 _this.$loadingRouteData 就是false了。  vue-router.js :2250 左右
-					}.bind(this),3000);
+				// 说明之前请求过 则不用再请求了
+				if(this.$root.myViewsData){
+					this.$data = this.$root.myViewsData;
+					transition.next();
+					console.log('已经请求过了不再请求数据');
+					return;
+				}
+				//将数据同步到根节点
+				this.$root.myViewsData = this.$data;
+
+				setTimeout(function(){
+					//在 transition.next({a:1}) 之前
+					//这里 _this.$loadingRouteData 是 true  因为此时获取
+					transition.next({a:'mssssg'+Math.random()*1});
+					
+				}.bind(this),3000);
 
 
 			},

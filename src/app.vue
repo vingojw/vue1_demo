@@ -168,9 +168,9 @@ module.exports = {
         asidewidth      : 350,           //用于 aside
         toast           : {show:false,content:'正在加载。。。'},         //用于 toast
         modalbody       : "可以通过在组件中调用 this.$parent.modalbody='' 来修改这里的内容",
-        myViews         : {},//列表页
-        myViewDetail    : {},//详情页
-        modalView       : {} //弹窗页
+        myViewsData     : null,//列表页
+        myViewDetail    : null,//详情页
+        modalView       : null //弹窗页
       };
     },
     components:{
