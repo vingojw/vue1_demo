@@ -42,11 +42,12 @@ nav > a{
 
 <template>
   <div class="app">
+  <p>页面状态 <pre>{{$data | json}}</pre></p>
     <p v-if="authenticating" style="color:red">Authenticating...</p>
     <h1 v-text="header">App Header</h1>
     <nav>
-    <a v-link="{ name: 'my_views' }">my-views</a>
-    <a v-link="{ name: 'my_views_detail', params: { viewId:vvv } }">my-views --> viewId:123</a>
+    <a v-link="{ name: 'my_views' }">列表</a>
+    <a v-link="{ name: 'my_views_detail', params: { viewId:vvv } }">详情1</a>
     <a v-link="{ name: 'about' }">about</a>
     <a v-link="{ path: '/forbidden' }">forbidden</a>
     <a v-link="{ path: '/nofound' }">404</a>
@@ -58,6 +59,7 @@ nav > a{
     <button @click="showRightAside = true">Show Aside right</button>
     <button @click="showTopAside = true">Show Aside top</button>
     <button @click="showBottomAside = true">Show Aside bottom</button>
+    <button @click="showToast">Toast</button>
     </nav>
     <router-view class="view" keep-alive transition="fade" transition-mode="out-in"></router-view>
 
@@ -132,6 +134,12 @@ nav > a{
       </div>
     </asidebar>
   </div>
+
+
+  <toast v-ref:toast :toast.sync="toast">
+    <div slot="content" >{{toast.content}}</div>
+  </toast>
+
 </template>
 
 <script>
@@ -158,12 +166,17 @@ module.exports = {
         asideBottomTit  : 'right-title', //用于 aside
         title           : 'title',       //用于 aside
         asidewidth      : 350,           //用于 aside
-        modalbody       : "可以通过在组件中调用 this.$parent.modalbody='' 来修改这里的内容"
+        toast           : {show:false,content:'正在加载。。。'},         //用于 toast
+        modalbody       : "可以通过在组件中调用 this.$parent.modalbody='' 来修改这里的内容",
+        myViews         : {},//列表页
+        myViewDetail    : {},//详情页
+        modalView       : {} //弹窗页
       };
     },
     components:{
       modal:require('./components/modal.vue'),
-      asidebar:require('./components/aside.vue')
+      asidebar:require('./components/aside.vue'),
+      toast:require('./components/toast.vue')
     },
     created:function(){
 
@@ -195,9 +208,18 @@ module.exports = {
       nonBreaking:function(){
         console.log('nonBreaking');
       },
-      //底部菜单
-      awesomeSheetHanlder:function(){
-        //this.as[(this.showAwesomeSheet = !this.showAwesomeSheet) ? 'show':'hide']();
+      showToast:function(){
+        var _this = this;
+
+        this.toast = {
+          show:true,
+          content:'toast test... 3s...'
+        };
+
+        setTimeout(function(){
+          _this.toast.show = false;
+        },3000);
+
       }
     },
     ready:function(){

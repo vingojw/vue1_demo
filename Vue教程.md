@@ -4,7 +4,7 @@
 
 [Vue1.0.0文档](http://rc.vuejs.org/)
 
-[Vue1.0.0绑定语法参考](https://github.com/yyx990803/vue/wiki/1.0.0-binding-syntax-reference#style-and-class-enhancements)
+[Vue1.0.0绑定语法参考](https://github.com/vuejs/vue/issues/1325)
 
 与webpack 一起使用所需插件
 
@@ -59,4 +59,4 @@
 
 [用Vue实现的拖拽效果](http://jsfiddle.net/lain8dono/mrnyf79e/)
 
- 
+
