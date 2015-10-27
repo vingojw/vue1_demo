@@ -28,6 +28,10 @@ module.exports = function(router){
 			name:'radio_view',
 			component: require('./views/radio_view.vue')
 		},
+		'/tab_view': {
+			name:'tab_view',
+			component: require('./views/tab_view.vue')
+		},
 		// not found handler
 	    '*': {
 	      component: require('./views/not_found.vue')

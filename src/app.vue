@@ -54,6 +54,7 @@ nav > a{
     <a v-link="{ path: '/modal_view' }">含有弹窗的页面</a>
     <a v-link="{ name: 'select_view' }">含有select的页面</a>
     <a v-link="{ name: 'radio_view' }">含有radio的页面</a>
+    <a v-link="{ name: 'tab_view' }">tab选项卡</a>
     <button @click="showModal = !showModal">Show Modal</button>
     <button @click="showLeftAside = true">Show Aside left</button>
     <button @click="showRightAside = true">Show Aside right</button>
