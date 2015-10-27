@@ -1,9 +1,7 @@
 <template>
 <div>
 	  <uiselect :items.sync="items">
-
-			 	<h3 slot="title">性别</h3>
-
+			<h3 slot="title">性别</h3>
       </uiselect>
 </div>
 </template>
@@ -12,7 +10,7 @@
 	module.exports = {
 		data:function(){
 			return {
-				items:[{text:'男',hover:false},{text:'女',hover:false},{text:'女博士',hover:false}],
+				items:[{text:'男',hover:false},{text:'女',hover:false}],
 				title:'select模拟'
 			}
 		},

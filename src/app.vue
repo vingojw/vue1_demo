@@ -42,7 +42,7 @@ nav > a{
 
 <template>
   <div class="app">
-  <p>页面状态 <pre>{{$data | json}}</pre></p>
+
     <p v-if="authenticating" style="color:red">Authenticating...</p>
     <h1 v-text="header">App Header</h1>
     <nav>
@@ -60,6 +60,7 @@ nav > a{
     <button @click="showTopAside = true">Show Aside top</button>
     <button @click="showBottomAside = true">Show Aside bottom</button>
     <button @click="showToast">Toast</button>
+    <button @click="splitting">试试按需加载</button>
     </nav>
     <router-view class="view" keep-alive transition="fade" transition-mode="out-in"></router-view>
 
@@ -133,6 +134,9 @@ nav > a{
         </div>
       </div>
     </asidebar>
+
+    <p>页面状态 <pre>{{$data | json}}</pre></p>
+
   </div>
 
 
@@ -219,6 +223,37 @@ module.exports = {
         setTimeout(function(){
           _this.toast.show = false;
         },3000);
+      },
+      //按需加载
+      splitting:function(){
+
+
+        //加载完毕后添加到map中
+        var _this = this;
+        require.ensure(['./views/splitting.vue'], function(require) {
+          var splitting = require('./views/splitting.vue');
+          _this.$route.router.map({
+            '/splitting_view':{
+              name:'splitting',
+              component: splitting
+            }
+          });
+          //加载完毕后再跳转
+          _this.$route.router.go({name:'splitting'});
+        });
+
+        //如果使用bundle-loader  会报错
+        // var load = require("bundle!./views/splitting.vue");
+        // load(function(file){
+        //   _this.$route.router.map({
+        //     '/splitting_view':{
+        //     name:'splitting',
+        //     component: splitting
+        //     }
+        //   });
+        //   //加载完毕后再跳转
+        //   _this.$route.router.go({name:'splitting'});
+        // });
 
       }
     },
