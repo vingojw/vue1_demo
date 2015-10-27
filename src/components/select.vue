@@ -39,14 +39,7 @@
         this.show = false;
         console.log('隐藏hideWrap');
       }
-		},
-		ready:function(){
-      //document.body.addEventListener('click',this.hideWrap,false);
-		},
-    destroyed:function(){
-      // document.body.removeEventListener('click',this.hideWrap,false);
-      // console.log('组件销毁');
-    }
+		}
 	}
 </script>
 
