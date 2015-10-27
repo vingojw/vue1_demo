@@ -70,7 +70,7 @@
 				console.log('modelclick');
 			},
 			modalkeyup:function(e){
-				this.$parent.modalbody = e.target.value;
+				this.$root.modalbody = e.target.value;
 			}
 		}
 	}

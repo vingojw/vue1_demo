@@ -60,6 +60,7 @@ nav > a{
     <button @click="showTopAside = true">Show Aside top</button>
     <button @click="showBottomAside = true">Show Aside bottom</button>
     <button @click="showToast">Toast</button>
+    <button @click="customShowToast">Toast自定义时长</button>
     <button @click="splitting">试试按需加载</button>
     </nav>
     <router-view class="view" keep-alive transition="fade" transition-mode="out-in"></router-view>
@@ -170,7 +171,7 @@ module.exports = {
         asideBottomTit  : 'right-title', //用于 aside
         title           : 'title',       //用于 aside
         asidewidth      : 350,           //用于 aside
-        toast           : {show:false,content:'正在加载。。。'},         //用于 toast
+        toast           : {content:'正在加载。。。'},         //用于 toast
         modalbody       : "可以通过在组件中调用 this.$parent.modalbody='' 来修改这里的内容",
         myViewsData     : null, //列表页
         myViewDetail    : null, //详情页
@@ -205,7 +206,6 @@ module.exports = {
         //debugger;
       },
       cancelCallback:function(child){
-
         console.log('modal-cancelCallback');
       }
     },
@@ -214,21 +214,19 @@ module.exports = {
         console.log('nonBreaking');
       },
       showToast:function(){
-        var _this = this;
-
-        this.toast = {
-          show:true,
-          content:'toast test... 3s...'
-        };
-
-        setTimeout(function(){
-          _this.toast.show = false;
-        },3000);
+        //直接设置，默认2.5秒后自动消失
+        this.toast.content = 'toast  2.5s...';
+        //如果同时设置多个，则只会显示最后一个
+        // this.toast.content = 'toast  2.6s...';
+        // this.toast.content = 'toast  2.7s...';
+        // this.toast.content = 'toast  2.8s...';
+      },
+      //自定义时长
+      customShowToast:function(){
+        this.toast ={ content : '自定义时长', timer : 4000};
       },
       //按需加载
       splitting:function(){
-
-
         //加载完毕后添加到map中
         var _this = this;
         require.ensure(['./views/splitting.vue'], function(require) {

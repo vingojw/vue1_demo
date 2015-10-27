@@ -10,8 +10,6 @@
         <div class="aside-header">
           <button type="button" class="close" @click='close'><span>&times;</span></button> <- 在aside中定义的close事件
           <h4 class="aside-title">{{header}}</h4>
-
-
     <dl>
       <dt>props参数：</dt>
       <dt>width:{{width}} </dt>
@@ -63,18 +61,6 @@
       slideTransition:function(){
         console.log('slide' + this.placement);
         return 'slide' + this.placement;
-      },
-      sideDirection:function(){
-        //设置方向的时候顺便把样式也设置一下
-
-
-      },
-      styleWidth:function(){
-        //如果不是左右方向，可以无视宽度
-        if(this.placement.replace(/(left|right|\s)/g,'')){
-          return '100%';
-        }
-        return this.width + 'px';
       }
     },
 		methods:{
