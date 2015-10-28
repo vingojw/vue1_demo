@@ -31,4 +31,8 @@ npm run dev
             not-found.vue
 </pre>
 
+##学习参考：
+[qingcheng](https://github.com/zerqu/qingcheng)
+
+[vue-strap](https://github.com/yuche/vue-strap)
 
