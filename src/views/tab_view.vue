@@ -47,6 +47,7 @@
 	module.exports = {
 		data:function(){
 			return {
+				title:'tab选项卡',
 				list:[
 					{header:'one ',content:'blablablablabla...',disabled:false},
 					{header:'two ',content:'bilibilibilibli...',disabled:false},
@@ -57,6 +58,9 @@
 		components : {
 			tabs : require('../components/tabset.vue'),
 			tab  : require('../components/tab.vue')
+		},
+		ready:function(){
+			this.$root.$set('header',this.title);
 		}
 	}
 </script>

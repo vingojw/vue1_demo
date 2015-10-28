@@ -11,9 +11,13 @@
   opacity: 0;
   transform: translate3d(0, -5px, 0);
 }
-/*.v-link-active {
+
+.v-link-active {
   color: red;
-}*/
+}
+.custom-active-class {
+  color: #f60;
+}
 
 /*css next 测试*/
   @keyframes testloading {
@@ -33,11 +37,13 @@
 }
 /*css next 测试*/
 
-nav > a{
-  background:#369;
-  color:#fff;
-  padding:3px 5px;
+nav > a,button{
+  color: #000;
+  padding: 3px 5px;
+  margin: 2px;
   display: inline-block;
+  border: 2px solid #000;
+  text-decoration: none;
 }
 
 </style>
@@ -46,24 +52,27 @@ nav > a{
   <div class="app">
 
     <p v-if="authenticating" style="color:red">Authenticating...</p>
-    <h1 v-text="header">App Header</h1><h2>{{$route.path}}</h2>
+    <h1 v-text="header">App Header</h1>
+    <p>$route.path: {{$route.path}}</p> 
     <nav>
-    <a v-link="{ name: 'my_views' }">列表</a>
-    <a v-link="{ name: 'my_views_detail', params: { viewId:vvv } }">详情1</a>
+    <a v-link="{ name: 'home', exact: true }">首页</a>
+    <a v-link="{ name: 'my_views', exact: true }">组件生命周期</a>
+    <a v-link="{ name: 'my_views_detail', params: { viewId:vvv }, exact: true }">url传值</a>
     <a v-link="{ name: 'about' }">about</a>
-    <a v-link="{ path: '/forbidden' }">forbidden</a>
-    <a v-link="{ path: '/nofound' }">404</a>
-    <a v-link="{ path: '/modal_view' }">含有弹窗的页面</a>
-    <a v-link="{ name: 'select_view' }">含有select的页面</a>
-    <a v-link="{ name: 'radio_view' }">含有radio的页面</a>
+    <!-- 如果是一个不存在的页面，那么用name 属性 -->
+    <a v-link="{ name: 'forbidden' }">在路由全局设置终止</a>
+    <a v-link="{ path: '/nofound' }">404</a> <!--这里不能使用 具名路径-->
+    <a v-link="{ name: 'modal_view' }">modal弹窗-页面</a>
+    <a v-link="{ name: 'select_view' }">select</a>
+    <a v-link="{ name: 'radio_view' }">radio</a>
     <a v-link="{ name: 'tab_view' }">tab选项卡</a>
-    <button @click="showModal = !showModal">Show Modal</button>
-    <button @click="showLeftAside = true">Show Aside left</button>
-    <button @click="showRightAside = true">Show Aside right</button>
-    <button @click="showTopAside = true">Show Aside top</button>
-    <button @click="showBottomAside = true">Show Aside bottom</button>
-    <button @click="showToast">Toast</button>
-    <button @click="customShowToast">Toast自定义时长</button>
+    <button @click="showModal = !showModal">Show Modal 全局</button>
+    <button @click="showLeftAside = true">Aside left</button>
+    <button @click="showRightAside = true">Aside right</button>
+    <button @click="showTopAside = true">Aside top</button>
+    <button @click="showBottomAside = true">Aside bottom</button>
+    <button @click="showToast">Toast 默认 2.5s</button>
+    <button @click="customShowToast">Toast自定义时长 4s</button>
     <button @click="splitting">试试按需加载</button>
     </nav>
     <router-view class="view" keep-alive transition="fade" transition-mode="out-in"></router-view>
@@ -155,6 +164,7 @@ nav > a{
 module.exports = {
     data: function() {
       return {
+        
         vvv             : '参数',        //用于 传参
         header          : '首页',
         showModal       : false,         //用于 modal
@@ -226,7 +236,7 @@ module.exports = {
       },
       //自定义时长
       customShowToast:function(){
-        this.toast ={ content : '自定义时长', timer : 4000};
+        this.toast = { content : '自定义时长4s...', timer : 4000};
       },
       //按需加载
       splitting:function(){

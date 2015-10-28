@@ -12,19 +12,27 @@
 		<div v-show="a" >这里是data 获取完数据过渡之后获取的值 {{a}}</div>
 		<h2>{{msg}}</h2>
 	</div>
-<p>生命周期{{lifecycle | json}}</p>
+<p>触发顺序</p>
+<pre>
+{{lifecycle | json}}
+</pre>
+<p>注意：第一次进入 和 再次进入（试着切换到其他路径，再回来） </p>
 </div>
 </template>
 
 <script>
+
+	var lifecycle = []; //为了描述声明周期， 在 canActivate 阶段 还没有 this.lifecycle
+
 	 module.exports = {
 	 	//props: ['父组建传的值'],
 	 	data:function(){
+	 		lifecycle.push('data');
 	 	 	console.log('1-1这里是组建的data,在route的 canActivate之后调用');
 	 		return {
 	 			msg: '各个阶段，可以查看控制台输出，message from my-views',
 	 			title:'my_views',
-	 			lifecycle:[]
+	 			lifecycle:lifecycle
 	 		}
 	 	},
 	 	//这里才是route的生存周期
@@ -34,6 +42,7 @@
 		    	//console.log('canActivate阶段，可以做一些用户验证的事情');
 		    	//return authenticationService.isLoggedIn()
 		    	console.log('1-canActivate');
+		    	lifecycle.push('canActivate');
 		    	//debugger;
 		    	return true;
 		    },
@@ -43,13 +52,13 @@
 		    	this.lifecycle.push('activate');
 		    	this.$root.$set('header',this.title);
 
-		    	transition.next({a:1});
+		    	transition.next();
 		    	//此方法结束后，api会调用afterActivate 方法
 		    	//在aftefActivate中 会给组件添加 $loadingRouteData 属性 并设置为true
 		    },
 			data: function(transition) {
 				var _this = this;
-				this.lifecycle.push('data');
+				this.lifecycle.push('route.data');
 				// 说明之前请求过 则不用再请求了
 				if(this.$root.myViewsData){
 					this.$data = this.$root.myViewsData;
@@ -63,7 +72,7 @@
 				setTimeout(function(){
 					//在 transition.next({a:1}) 之前
 					//这里 _this.$loadingRouteData 是 true  因为此时获取
-					transition.next({a:'mssssg'});
+					transition.next({msg:'加载后的数据'});
 
 				}.bind(this),3000);
 
@@ -75,6 +84,30 @@
 				this.lifecycle = [];
 				transition.next();
 			}
-	 	}
+	 	},
+	 	created:function(){
+			this.lifecycle.push('created');
+		},
+		beforeCompile:function(){
+			this.lifecycle.push('beforeCompile');
+		},
+		compiled:function(){
+			this.lifecycle.push('compiled');
+		},
+		ready:function(){
+			this.lifecycle.push('ready');
+		},
+		attached:function(){
+			this.lifecycle.push('attached');
+		},
+		detached:function(){
+			this.lifecycle.push('detached');
+		},
+		beforeDestroy:function(){
+			this.lifecycle.push('beforeDestroy');
+		},
+		destroyed:function(){
+			this.lifecycle.push('destroyed');
+		}
 	 }
 </script>

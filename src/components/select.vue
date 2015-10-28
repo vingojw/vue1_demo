@@ -98,6 +98,7 @@
       line-height: 40px;
       padding-left:18px;
       color:#000;
+      list-style: none;
     }
     .select_wrap li.hover{
       background:#3e3e3e;

@@ -33,6 +33,10 @@ module.exports = function(router){
 			name:'tab_view',
 			component: require('./views/tab_view.vue')
 		},
+		'/forbidden':{
+			name:'forbidden',
+			component: require('./views/forbidden.vue')
+		},
 		// not found handler
 	    '*': {
 	      component: require('./views/not_found.vue')
@@ -59,7 +63,9 @@ module.exports = function(router){
 		}
 
 		//如果是中止，这里可以判断用户登录
-		if(transition.to.path === '/forbidden'){
+		//if(transition.to.path === '/forbidden'){
+		if(transition.to.name == 'forbidden'){
+			
 			router.app.authenticating = true
 			setTimeout(function(){
 				router.app.authenticating = false
