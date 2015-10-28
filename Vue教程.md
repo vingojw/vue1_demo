@@ -6,6 +6,8 @@
 
 [Vue1.0.x绑定语法参考](https://github.com/vuejs/vue/issues/1325)
 
+[每次更新的变化](https://github.com/vuejs/vue/releases)
+
 与webpack 一起使用所需插件
 
 [vue-loader-example](https://github.com/vuejs/vue-loader-example)
