@@ -40,6 +40,7 @@
 
 #Vue-router教程
 [中文文档](http://vuejs.github.io/vue-router/zh-cn/index.html) - [英文文档](http://vuejs.github.io/vue-router/en/index.html)
+[学习笔记](https://github.com/vingojw/learn-vue-router)
 
 #技术交流
 
@@ -58,5 +59,3 @@
 [Chat by Vue + Webpack](https://github.com/Coffcer/vue-chat)
 
 [用Vue实现的拖拽效果](http://jsfiddle.net/lain8dono/mrnyf79e/)
-
-
