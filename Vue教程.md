@@ -2,9 +2,9 @@
 
 [细节与最佳实践](http://vuejs.org/guide/best-practices.html)
 
-[Vue1.0.0文档](http://rc.vuejs.org/)
+[Vue1.0.x文档](http://vuejs.org/)
 
-[Vue1.0.0绑定语法参考](https://github.com/vuejs/vue/issues/1325)
+[Vue1.0.x绑定语法参考](https://github.com/vuejs/vue/issues/1325)
 
 与webpack 一起使用所需插件
 
