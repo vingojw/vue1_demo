@@ -58,6 +58,7 @@ nav > a,button{
     <a v-link="{ name: 'home', exact: true }">首页</a>
     <a v-link="{ name: 'my_views', exact: true }">组件生命周期</a>
     <a v-link="{ name: 'my_views_detail', params: { viewId:vvv }, exact: true }">url传值</a>
+  
     <a v-link="{ name: 'about' }">about</a>
     <!-- 如果是一个不存在的页面，那么用name 属性 -->
     <a v-link="{ name: 'forbidden' }">在路由全局设置终止</a>
