@@ -14,7 +14,8 @@ module.exports = function(router){
 		},
 		'/my_views/:viewId': {
 			name:'my_views_detail',
-			component: require('./views/my_views_detail.vue')
+			component: require('./views/my_views_detail.vue'),
+			auth: true // 此页面需要用户登录
 		},
 		'/modal_view': {
 			name:'modal_view',
@@ -52,6 +53,11 @@ module.exports = function(router){
 	// })
 
 	router.beforeEach(function(transition){
+		//可以通过在路由中的自定义字段来验证用户是否需要登陆
+		if(transition.to.auth){
+			console.log('通过配置路由中自定义的字段验证是否需要登陆');
+		}
+
 		//如果是中止，这里可以判断用户登录
 		if(transition.to.path === '/forbidden'){
 			router.app.authenticating = true

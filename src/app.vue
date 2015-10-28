@@ -2,9 +2,11 @@
 
 .view {
   transition: all .3s ease;
-  border:2px solid red;
+  border:2px solid #000;
   margin-top:20px;
+  padding:1em;
 }
+
 .fade-enter, .fade-leave {
   opacity: 0;
   transform: translate3d(0, -5px, 0);
@@ -44,7 +46,7 @@ nav > a{
   <div class="app">
 
     <p v-if="authenticating" style="color:red">Authenticating...</p>
-    <h1 v-text="header">App Header</h1>
+    <h1 v-text="header">App Header</h1><h2>{{$route.path}}</h2>
     <nav>
     <a v-link="{ name: 'my_views' }">列表</a>
     <a v-link="{ name: 'my_views_detail', params: { viewId:vvv } }">详情1</a>
