@@ -23,4 +23,5 @@ require('./routers')(router);
 
 
 router.start(App,'#app');
+window.router = router;
 

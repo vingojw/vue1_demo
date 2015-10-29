@@ -1,9 +1,9 @@
 <template>
 <div class="tab">
 	<ul class="tab-nav">
-		<li v-for="item in renderData">
+		<li v-for="(index,item) in renderData">
 			<a href="#"
-			@click.prevent.stop = "handleTablistClick($event,$index,this)"
+			@click.prevent.stop = "handleTablistClick($event,index,this)"
 			:class="{
 				active:$index === activeIndex,
 				disabled:item.disabled

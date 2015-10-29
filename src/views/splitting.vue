@@ -1,6 +1,29 @@
 <template>
 <div class="splitting">
 	按需加载的页面 {{msg}}
+	<pre>
+      app.vue 中 ，先请求内容，再配置路由，再跳转
+      //按需加载
+      splitting:function(){
+        //加载完毕后添加到map中
+        var _this = this;
+
+        require.ensure(['./views/splitting.vue'], function(require) {
+          var splitting = require('./views/splitting.vue');
+
+          //配置路由
+          _this.$route.router.map({
+            '/splitting_view':{
+              name:'splitting',
+              component: splitting
+            }
+          });
+
+          //跳转
+          _this.$route.router.go({name:'splitting'});
+        });
+      }
+	</pre>
 </div>
 </template>
 
@@ -14,41 +37,8 @@
 				msg:'这里返回数据'
 			}
 		},
-		//这里才是route的生存周期
-		route:{
-			//waitForData: true, //数据加载完毕后再切换试图，也就是 点击之后先没反应，然后数据加载完，再出发过渡效果
-			canActivate:function(transition){
-				//console.log('canActivate阶段，可以做一些用户验证的事情');
-				//return authenticationService.isLoggedIn()
-				console.log('1-canActivate');
-				//debugger;
-				return true;
-			},
-			data:function(){
-
-
-				this.$root.$set('splittingView',{data:this.$data});
-			},
-			activate:function(transition){
-				//console.log('active');
-				//console.log('2-activate');
-
-				this.$root.$set('header',this.title);
-				transition.next();
-				//此方法结束后，api会调用afterActivate 方法
-				//在aftefActivate中 会给组件添加 $loadingRouteData 属性 并设置为true
-			},
-			deactivate: function (transition) {
-				console.log('4');
-				console.log('Bar 销毁!')
-				transition.next()
-			}
-		},
 		ready:function(){
-
-		},
-		destroyed:function(){
-
+			this.$root.$set('splittingView',{data:this.$data});
 		}
 	}
 </script>

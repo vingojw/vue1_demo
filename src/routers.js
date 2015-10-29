@@ -65,7 +65,7 @@ module.exports = function(router){
 		//如果是中止，这里可以判断用户登录
 		//if(transition.to.path === '/forbidden'){
 		if(transition.to.name == 'forbidden'){
-			
+
 			router.app.authenticating = true
 			setTimeout(function(){
 				router.app.authenticating = false
@@ -76,6 +76,20 @@ module.exports = function(router){
 			 transition.next();
 			 console.log('每次路由开始的时候beforeEach');
 		}
+	});
+
+
+	//可以记录访问路径
+	router.afterEach(function(transition){
+		var routeList = router.app.routeList;
+
+		routeList.$set(routeList.length, {
+			name : transition.to.name,
+			path : transition.to.path,
+			query : transition.to.query,
+			params : transition.to.params,
+			timer: +new Date
+		});
 	});
 
 }

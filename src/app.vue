@@ -53,12 +53,12 @@ nav > a,button{
 
     <p v-if="authenticating" style="color:red">Authenticating...</p>
     <h1 v-text="header">App Header</h1>
-    <p>$route.path: {{$route.path}}</p> 
+    <p>$route.path: {{$route.path}}</p>
     <nav>
     <a v-link="{ name: 'home', exact: true }">首页</a>
     <a v-link="{ name: 'my_views', exact: true }">组件生命周期</a>
-    <a v-link="{ name: 'my_views_detail', params: { viewId:vvv }, exact: true }">url传值</a>
-  
+    <a v-link="{ name: 'my_views_detail', params: { viewId:vvv } }">url传值</a>
+
     <a v-link="{ name: 'about' }">about</a>
     <!-- 如果是一个不存在的页面，那么用name 属性 -->
     <a v-link="{ name: 'forbidden' }">在路由全局设置终止</a>
@@ -165,7 +165,6 @@ nav > a,button{
 module.exports = {
     data: function() {
       return {
-        
         vvv             : '参数',        //用于 传参
         header          : '首页',
         showModal       : false,         //用于 modal
@@ -190,7 +189,8 @@ module.exports = {
         myViewsData     : null, //列表页
         myViewDetail    : null, //详情页
         modalView       : null, //弹窗页
-        splittingView   : null  //按需加载
+        splittingView   : null, //按需加载
+        routeList       : []    //访问周期中所访问了那些路径,在route.js中设置
       };
     },
     components:{
@@ -251,8 +251,10 @@ module.exports = {
               component: splitting
             }
           });
+
           //加载完毕后再跳转
           _this.$route.router.go({name:'splitting'});
+
         });
 
         //如果使用bundle-loader  会报错
