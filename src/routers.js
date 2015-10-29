@@ -33,6 +33,10 @@ module.exports = function(router){
 			name:'tab_view',
 			component: require('./views/tab_view.vue')
 		},
+		'/slider_view': {
+			name:'slider_view',
+			component: require('./views/slider_view.vue')
+		},
 		'/forbidden':{
 			name:'forbidden',
 			component: require('./views/forbidden.vue')

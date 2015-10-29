@@ -53,7 +53,7 @@ nav > a,button{
 
     <p v-if="authenticating" style="color:red">Authenticating...</p>
     <h1 v-text="header">App Header</h1>
-    <p>$route.path: {{$route.path}}</p>
+    <p>当前路径: {{$route.path}}</p>
     <nav>
     <a v-link="{ name: 'home', exact: true }">首页</a>
     <a v-link="{ name: 'my_views', exact: true }">组件生命周期</a>
@@ -67,6 +67,7 @@ nav > a,button{
     <a v-link="{ name: 'select_view' }">select</a>
     <a v-link="{ name: 'radio_view' }">radio</a>
     <a v-link="{ name: 'tab_view' }">tab选项卡</a>
+    <a v-link="{ name: 'slider_view' }">slider with swiper</a>
     <button @click="showModal = !showModal">Show Modal 全局</button>
     <button @click="showLeftAside = true">Aside left</button>
     <button @click="showRightAside = true">Aside right</button>
