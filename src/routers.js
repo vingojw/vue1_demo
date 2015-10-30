@@ -41,6 +41,10 @@ module.exports = function(router){
 			name:'forbidden',
 			component: require('./views/forbidden.vue')
 		},
+		'/test':{
+			name:'test',
+			component: require('./views/test.vue')
+		},
 		// not found handler
 	    '*': {
 	      component: require('./views/not_found.vue')

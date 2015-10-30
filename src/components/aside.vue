@@ -1,5 +1,5 @@
 <template>
-<div class="aside_components_mask" v-if="show" transition="modal" @click.stop="show=false"></div>
+  <div class="aside_components_mask" v-if="show" transition="modal" @click.stop="show=false"></div>
   <div class="aside"
     :style="{width : width ? width+'px' : ''}"
     :class="placement"
@@ -8,15 +8,14 @@
     <div class="aside-dialog">
       <div class="aside-content">
         <div class="aside-header">
-          <button type="button" class="close" @click='close'><span>&times;</span></button> <- 在aside中定义的close事件
+          <button  class="close" @click='close'><span>&times;</span></button>  在aside中定义的close事件
           <h4 class="aside-title">{{header}}</h4>
-    <dl>
-      <dt>props参数：</dt>
-      <dt>width:{{width}} </dt>
-      <dt>placement:{{placement}}</dt>
-      <dt>header:{{header}}</dt>
-    </dl>
-    <pre>
+          <dl>
+            <dt>props参数：</dt>
+            <dt>width:{{width}} </dt>
+            <dt>placement:{{placement}}</dt>
+            <dt>header:{{header}}</dt>
+          </dl>
         </div>
         <div class="aside-body">
           <slot name="body">
@@ -36,22 +35,16 @@
         type: Boolean,
         require: true
       },
-      placement: String,
+      placement: {
+        type:String
+      },
       header: {
         type: String,
         default:''
       },
-      width: Number
-    },
-    filters:{
-      // clearwran:{
-      //   read:function(val){
-      //     return val*1;
-      //   },
-      //   write:function(val,oldVal){
-      //     return val*1;
-      //   }
-      // }
+      width: {
+        type:Number
+      }
     },
     computed:{
       slideTransition:function(){
@@ -119,9 +112,11 @@
   .slideleft-enter {
     animation:slideleft-in .3s;
   }
+
   .slideleft-leave {
     animation:slideleft-out .3s;
   }
+
   @keyframes slideleft-in {
     0% {
       transform: translateX(-100%);
@@ -132,6 +127,7 @@
       opacity: 1;
     }
   }
+
   @keyframes slideleft-out {
     0% {
       transform: translateX(0);
@@ -142,12 +138,14 @@
       opacity: 0;
     }
   }
+
   .slideright-enter {
     animation:slideright-in .3s;
   }
   .slideright-leave {
     animation:slideright-out .3s;
   }
+
   @keyframes slideright-in {
     0% {
       transform: translateX(100%);
@@ -158,6 +156,7 @@
       opacity: 1;
     }
   }
+
   @keyframes slideright-out {
     0% {
       transform: translateX(0);
@@ -172,9 +171,11 @@
   .slidetop-enter {
     animation:slidetop-in .3s;
   }
+
   .slidetop-leave {
     animation:slidetop-out .3s;
   }
+
   @keyframes slidetop-in {
     0% {
       transform: translateY(-100%);
@@ -185,6 +186,7 @@
       opacity: 1;
     }
   }
+
   @keyframes slidetop-out {
     0% {
       transform: translateX(0);
@@ -202,6 +204,7 @@
   .slidebottom-leave {
     animation:slidebottom-out .3s;
   }
+
   @keyframes slidebottom-in {
     0% {
       transform: translateY(100%);
@@ -226,7 +229,6 @@
   .aside:focus {
       outline: 0
   }
-
   .aside .aside-dialog .aside-header {
       border-bottom: 1px solid #e5e5e5;
       min-height: 16.43px;
