@@ -1,9 +1,9 @@
 <template>
 		<div class="modal-mask" v-if="show" transition="modal" transition-mode="out-in">
-			<div class="modal-wrapper" v-el:overlay @click.stop="modelclick" >
+			<div class="modal-wrapper" v-el:overlay @click.stop="modalclick" >
 				<div class="modal-container">
 					<div class="modal-header">
-						<span class="modal-close" @click="show=false"></span>
+						<span class="modal-close"  @click="show=false"></span>
 						<slot name="header">
 						default header
 						</slot>
@@ -58,7 +58,7 @@
 			keyupcallback:function(){
 				console.log('duang~');
 			},
-			modelclick:function(e){
+			modalclick:function(e){
 				console.log(e.target);
 				console.log(this.$els.overlay);
 				//因为想实现只点击背景层隐藏modal
@@ -67,7 +67,7 @@
 					//点击遮罩层，隐藏modal
 					this.show = false;
 				}
-				console.log('modelclick');
+				console.log('modalclick');
 			},
 			modalkeyup:function(e){
 				this.$root.modalbody = e.target.value;

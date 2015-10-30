@@ -56,9 +56,9 @@
       width:325px;
       height:40px;
       position: relative;
-      border:1px solid #ddd;
+      border:1px solid #000;
       background:#fff;
-      color:#ddd;
+      color:#949494;
     }
     .select-content{
       margin-top:12px;
@@ -72,7 +72,7 @@
       position: absolute;
       right:1px;
       top:1px;
-      background:#ddd;
+      background:#000;
     }
     .select_arrow span{
       position:absolute;
@@ -81,7 +81,7 @@
       height: 0;
       border-left: 7px solid transparent;
       border-right: 7px solid transparent;
-      border-top: 14px solid #999;
+      border-top: 14px solid #fff;
     }
     .select_wrap{
       margin: 0 0 0 -1px;;
@@ -90,7 +90,7 @@
       z-index: 2;
       width: 100%;
       top: 100%;
-      border:1px solid #ddd;
+      border:1px solid #000;
       background:#fff;
     }
     .select_wrap li{
@@ -101,7 +101,7 @@
       list-style: none;
     }
     .select_wrap li.hover{
-      background:#3e3e3e;
+      background:#949494;
     }
     .select_wrap.hide{
       display: none;

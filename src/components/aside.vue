@@ -36,16 +36,12 @@
         type: Boolean,
         require: true
       },
-      placement: {
-        type: String
-      },
+      placement: String,
       header: {
         type: String,
         default:''
       },
-      width: {
-        type: Number
-      }
+      width: Number
     },
     filters:{
       // clearwran:{

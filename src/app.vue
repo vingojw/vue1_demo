@@ -1,11 +1,25 @@
 <style>
 
+
+
+/*
+关于 v-cloak 参考： http://vuejs.org/api/#v-cloak
+
+*/
+[v-cloak] {
+  display: none;
+}
+
+
+
+
 .view {
   transition: all .3s ease;
   border:2px solid #000;
   margin-top:20px;
   padding:1em;
 }
+
 
 .fade-enter, .fade-leave {
   opacity: 0;
@@ -15,6 +29,7 @@
 .v-link-active {
   color: red;
 }
+
 .custom-active-class {
   color: #f60;
 }
@@ -67,6 +82,8 @@ nav > a,button{
     <a v-link="{ name: 'select_view' }">select</a>
     <a v-link="{ name: 'radio_view' }">radio</a>
     <a v-link="{ name: 'tab_view' }">tab选项卡</a>
+    </nav>
+    <p>
     <button @click="showModal = !showModal">Show Modal 全局</button>
     <button @click="showLeftAside = true">Aside left</button>
     <button @click="showRightAside = true">Aside right</button>
@@ -75,7 +92,7 @@ nav > a,button{
     <button @click="showToast">Toast 默认 2.5s</button>
     <button @click="customShowToast">Toast自定义时长 4s</button>
     <button @click="splitting">试试按需加载</button>
-    </nav>
+    </p>
     <router-view class="view" keep-alive transition="fade" transition-mode="out-in"></router-view>
 
     <modal :show.sync="showModal" v-ref:index-modal > <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325 搜 Shorthands -->

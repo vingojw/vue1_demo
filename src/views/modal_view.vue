@@ -7,8 +7,8 @@
         default content
       -->
 
+      <h3 slot="header">头部内容</h3>
       <h3 slot="body"><span v-text="modalbody"></span></h3>
-      <h3 slot="header">含有弹窗的子页面</h3>
     </modal>
 </div>
 </template>
@@ -18,7 +18,7 @@
 		data:function(){
 			return {
 				showModal:false,
-				modalbody:'含有弹窗的子页面'
+				modalbody:'body内容'
 			}
 		},
 		components:{
