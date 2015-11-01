@@ -42,7 +42,7 @@ module.exports = function(router){
 			component: require('./views/forbidden.vue')
 		},
 		'/test':{
-			name:'test',
+			name:'test_view',
 			component: require('./views/test.vue')
 		},
 		// not found handler

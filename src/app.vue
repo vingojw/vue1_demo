@@ -83,6 +83,7 @@ nav > a,button{
     <a v-link="{ name: 'radio_view' }">radio</a>
     <a v-link="{ name: 'tab_view' }">tab选项卡</a>
     <a v-link="{ name: 'slider_view' }">slider with swiper</a>
+    <a v-link="{ name: 'test_view' }">test.vue 测试字符,压缩后</a>
     </nav>
     <p>
     <button @click="showModal = !showModal">Show Modal 全局</button>
@@ -173,7 +174,7 @@ nav > a,button{
 
 
   <toast v-ref:toast :toast.sync="toast">
-    <div slot="content" >{{toast.content}}</div>
+     <div slot = "content" >{{toast.content}}</div>
   </toast>
 
 </template>
