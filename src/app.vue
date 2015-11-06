@@ -170,15 +170,19 @@ nav > a,button{
 
     <p>页面状态 <pre>{{$data | json}}</pre></p>
 
+    <!--toast-->
+    <toast v-ref:toast :toast.sync="toast">
+       <div slot = "content" >{{toast.content}}</div>
+    </toast>
+
+
+
+
+
+
+
   </div>
-
-
-  <toast v-ref:toast :toast.sync="toast">
-     <div slot = "content" >{{toast.content}}</div>
-  </toast>
-
 </template>
-
 <script>
 
 module.exports = {
