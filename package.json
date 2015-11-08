@@ -12,13 +12,13 @@
     "html-loader": "^0.3.0",
     "jshint-loader": "^0.8.3",
     "style-loader": "^0.12.3",
-    "swiper": "^3.1.7",
+    "swiper": "^3.2.0",
     "url-loader": "^0.5.6",
-    "vue": "^1.0.6",
+    "vue": "^1.0.7",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^4.0.10",
     "vue-router": "^0.7.5",
-    "webpack": "^1.11.0",
+    "webpack": "^1.12.3",
     "webpack-dev-server": "^1.12.1"
   },
   "scripts": {

@@ -84,6 +84,7 @@ nav > a,button{
     <a v-link="{ name: 'tab_view' }">tab选项卡</a>
     <a v-link="{ name: 'slider_view' }">slider with swiper</a>
     <a v-link="{ name: 'test_view' }">test.vue 测试字符,压缩后</a>
+    <a v-link="{ name: 'async' }">async 异步加载</a>
     </nav>
     <p>
     <button @click="showModal = !showModal">Show Modal 全局</button>

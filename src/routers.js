@@ -45,6 +45,15 @@ module.exports = function(router){
 			name:'test_view',
 			component: require('./views/test.vue')
 		},
+		'async':{
+			//http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
+			name:'async',
+			component: function(reslove){
+				//异步加载，
+				//例子
+				return require(['./views/async.vue'],reslove)
+			}
+		},
 		// not found handler
 	    '*': {
 	      component: require('./views/not_found.vue')
