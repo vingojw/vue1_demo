@@ -11,9 +11,13 @@
 		<h2>{{msg}}</h2>
 	</div>
 
+	<h3>获取的query</h3>
+		{{$route.query|json}}
+
 	<p>触发顺序</p>
 	<pre style="line-height:1.5">
 	<div v-for="(k, val) in lifecycle">{{k}} --> {{{val}}}</div>
+
 	</pre>
 
 	<p>注意：第一次进入 和 再次进入（试着切换到其他路径，再回来） </p>
