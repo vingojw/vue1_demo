@@ -4,11 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
     <title></title>
-     <link rel="stylesheet" href="./build/style.css">
   </head>
   <body>
     <div id="app"></div>
-    <script src="./build/vendor.js"></script>
-    <script src="./build/build.js"></script>
   </body>
 </html>

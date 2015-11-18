@@ -10,6 +10,7 @@ npm run dev
 │  package.json        # 项目配置
 │  readme.md           # 项目说明
 │  index.html          # 首页
+│  index.tpl           # 首页模板  在发布的时候 执行 PRODUCTION=1 webpack 会生成一个d.html并注入脚本，样式，达到版本控制的目的
 │  webpack.config.js   # webpack 配置文件
 │
 ├─node_modules

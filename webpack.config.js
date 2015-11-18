@@ -12,19 +12,35 @@ var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
+
+// 在命令行 输入  “PRODUCTION=1 webpack --progress” 就会打包压缩，并且注入md5戳 到 d.html里面
+var production = process.env.PRODUCTION;
+console.log(production);
 var plugins = [
   //会将所有的样式文件打包成一个单独的style.css
-  new ExtractTextPlugin("style.css", {
+  new ExtractTextPlugin( production ? "style.[hash].css" : "style.css" , {
     disable: false,
     //allChunks: true  //所有独立样式打包成一个css文件
   }),
   //new ExtractTextPlugin("[name].css" )
   //自动分析重用的模块并且打包成单独的文件
-  new CommonsChunkPlugin('vendor.js')
+  new CommonsChunkPlugin(production ? "vendor.[hash].js" : "vendor.js" ),
 ];
- // 在命令行 输入  “PRODUCTION=1 webpack” 就会打包压缩
+
+//发布编译时，压缩，版本控制
 if (process.env.PRODUCTION) {
+  //压缩
   plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false } }));
+
+  //版本控制
+  var HtmlWebpackPlugin = require("html-webpack-plugin");
+  //HtmlWebpackPlugin文档 https://www.npmjs.com/package/html-webpack-plugin
+  //https://github.com/ampedandwired/html-webpack-plugin/issues/52
+  plugins.push( new HtmlWebpackPlugin({
+    filename:'../d.html',//会生成d.html在根目录下,并注入脚本
+    template:'index.tpl',
+    inject:true //此参数必须加上，不加不注入
+  }));
 }
 
 
@@ -39,7 +55,7 @@ module.exports = {
                 此字段配置如果不正确，发布后资源定位不对，比如：css里面的精灵图路径错误
          */
         publicPath: "/build/",
-        filename: "build.js"
+        filename: production ? "build.[hash].js" : "build.js"//"build.[hash].js"//[hash]MD5戳   解决html的资源的定位可以使用 webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
     },
     module: {
         preLoaders:[

@@ -4,6 +4,12 @@ require('./css/common.css');//加载公共样式
 var Vue = require('vue');
 var VueRouter = require('vue-router');
 
+// register filters 自定义过滤器  金额格式化，
+var filters = require('./filters');
+Object.keys(filters).forEach(function(k) {
+  Vue.filter(k, filters[k]);
+});
+
 
 Vue.use(VueRouter);
 var App = Vue.extend(require('./app.vue'));

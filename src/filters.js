@@ -34,5 +34,24 @@ function urlize(text) {
   });
 }
 
+//获取图片地址，如果地址带有 http://那么就认为是绝对地址，然后直接返回
+function imgUrl(url){
+    if(url.match(/http:\/\//)){
+        return url;
+    }
+
+    //全站统一配置，页面首先会引用
+    if(window.abp){
+        return window.abp.imageDomain + url;
+    }
+    var testUrl  = 'http://img.yaomaiche.com';  //此url到时候走配置
+
+    if(this.isTest){
+        testUrl = 'http://img.test.yaomaiche.com';
+    }
+    return testUrl + url;
+}
+
+exports.imgUrl = imgUrl;
 exports.timeago = timeago;
 exports.urlize = urlize;

@@ -16,7 +16,7 @@
 
 	<p>触发顺序</p>
 	<pre style="line-height:1.5">
-	<div v-for="(k, val) in lifecycle">{{k}} --> {{{val}}}</div>
+	<div v-for="(k, val) in lifecycle" track-by="$index">{{k}} --> {{{val}}}</div>
 
 	</pre>
 
@@ -58,6 +58,7 @@
 		    },
 			data: function(transition) {
 				var _this = this;
+
 				this.lifecycle.push("route.data <a href='http://vuejs.github.io/vue-router/zh-cn/pipeline/data.html'>在激活阶段被调用，在 activate 被断定（ resolved ，指该函数返回的 promise 被 resolve ）。用于加载和设置当前组件的数据</a>");
 
 				// 说明之前请求过 则不用再请求了

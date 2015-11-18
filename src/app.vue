@@ -98,8 +98,8 @@ nav > a,button{
     <a v-link="{ name: 'home', exact: true }">首页</a>
     <a v-link="{ name: 'my_views', exact: true }">组件生命周期</a>
     <a v-link="{ name: 'my_views_detail', params: { viewId:vvv } }">url传值</a>
-    <a v-link="{ name: 'my_views_detail', params: { viewId:'vvv',viewType:vvv} }">url传值,多个参数</a>
-    <a v-link="{ path: '/my_views?viewId=111'}">修改为原来/foo?user=1 的方式</a>
+    <a v-link="{ path: '/my_views?viewId='+vvv}">修改为原来/foo?user=1 的方式（变量）</a>
+    <a v-link="{ path: '/my_views?viewId=vvv'}">修改为原来/foo?user=1 的方式（字符串）</a>
     <a v-link="{ name: 'about' }">about</a>
     <!-- 如果是一个不存在的页面，那么用name 属性 -->
     <a v-link="{ name: 'forbidden' }">在路由全局设置终止</a>
@@ -121,7 +121,6 @@ nav > a,button{
     <button @click="showToast">Toast 默认 2.5s</button>
     <button @click="customShowToast">Toast自定义时长 4s</button>
     <button @click="splitting">试试按需加载</button>
-    <button @click="effect='back'">修改过场方向</button>
     </p>
     <router-view class="view" id="view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
 

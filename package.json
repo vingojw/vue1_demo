@@ -10,6 +10,7 @@
     "cssnext-loader": "^1.0.1",
     "file-loader": "^0.8.4",
     "html-loader": "^0.3.0",
+    "html-webpack-plugin": "^1.6.2",
     "jshint-loader": "^0.8.3",
     "style-loader": "^0.12.3",
     "swiper": "^3.2.0",
@@ -22,9 +23,9 @@
     "webpack-dev-server": "^1.12.1"
   },
   "scripts": {
-    "dev": "webpack-dev-server --inline  ",
-    "port": "webpack-dev-server --inline --port 9090 ",
-    "hot": "webpack-dev-server --inline --hot",
+    "dev": "webpack-dev-server --progress --profile --colors --inline ",
+    "port": "webpack-dev-server --progress --colors --inline --port 9090 ",
+    "hot": "webpack-dev-server --progress --colors --inline --hot",
     "cp": "cp -r index.html ./build/ d:/wamp/www/vue",
     "ip": "webpack-dev-server  --progress --colors --hot --host=0.0.0.0  --port 9000"
   },
