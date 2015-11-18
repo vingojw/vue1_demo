@@ -2,8 +2,11 @@
 require('./css/common.css');//加载公共样式
 
 var Vue = require('vue');
+var VueTouch = require('./vtouch');
 var VueRouter = require('vue-router');
-
+Vue.use(VueTouch);
+var fastclick = require('fastclick');
+fastclick.attach(document.body);
 // register filters 自定义过滤器  金额格式化，
 var filters = require('./filters');
 Object.keys(filters).forEach(function(k) {

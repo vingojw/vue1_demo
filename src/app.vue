@@ -121,6 +121,10 @@ nav > a,button{
     <button @click="showToast">Toast 默认 2.5s</button>
     <button @click="customShowToast">Toast自定义时长 4s</button>
     <button @click="splitting">试试按需加载</button>
+    <div @click="click" style="width:200px;height:200px;background:red;">click{{eventLog}}</div>
+    <div v-touch:tap="tap" style="width:200px;height:200px;background:red;">tap{{eventLog}}</div>
+    <div v-touch:swipe="swipe" style="width:200px;height:200px;background:red;">swipe{{eventLog}}</div>
+    <div v-touch:press="press(this)" style="width:200px;height:200px;background:red;">Press{{eventLog}}</div>
     </p>
     <router-view class="view" id="view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
 
@@ -241,7 +245,8 @@ module.exports = {
         myViewDetail    : null, //详情页
         modalView       : null, //弹窗页
         splittingView   : null, //按需加载
-        routeList       : []    //访问周期中所访问了那些路径,在route.js中设置
+        routeList       : [],    //访问周期中所访问了那些路径,在route.js中设置
+        eventLog        : ''    //触摸事件的时候log
       };
     },
     components:{
@@ -321,6 +326,18 @@ module.exports = {
         //   _this.$route.router.go({name:'splitting'});
         // });
 
+      },
+      click:function(){
+        this.eventLog = 'eventLog'+Math.random();
+      },
+      tap:function(){
+        this.eventLog = 'tap'+Math.random();
+      },
+      swipe:function(){
+        this.eventLog = 'swipe'+Math.random();
+      },
+      press:function(e){
+        this.eventLog = e+''+Math.random();
       }
     },
     ready:function(){
