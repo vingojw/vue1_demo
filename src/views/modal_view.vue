@@ -1,6 +1,7 @@
 <template>
 <div>
 	  <button type="text" @click = "showModal=true"> 显示该页面modal </button>
+	  <button type="text" @click = "showM"> 显示主页的modalEventBus </button>
 	  <modal :show.sync="showModal" v-ref:index-modal> <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325-->
       <!--
         you can use custom content here to overwrite
@@ -28,6 +29,12 @@
 			activate:function(transition){
 				this.$root.$set('header',this.modalbody);
 				transition.next();
+			}
+		},
+		methods:{
+			showM:function(){
+				debugger;
+				this.eventBus.$dispatch('showModal',this);
 			}
 		}
 	}

@@ -11,17 +11,17 @@ fastclick.attach(document.body);
 // register filters 自定义过滤器  金额格式化，
 var filters = require('./filters');
 
-//eventBus，全局事件，比如 toast
-var eventBus = require('./eventBus')(Vue);
-window.eventBus = eventBus;
-
 Object.keys(filters).forEach(function(k) {
   Vue.filter(k, filters[k]);
 });
 
+var App = Vue.extend(require('./app.vue'));
+//eventBus，全局事件，比如 toast
+var bus = new Vue();
+
 
 Vue.use(VueRouter);
-var App = Vue.extend(require('./app.vue'));
+
 var router = new VueRouter(
 	{
 	  hashbang: false,  //为true的时候 example.com/#!/foo/bar ， false的时候 example.com/#/foo/bar
@@ -38,5 +38,14 @@ require('./routers')(router);
 
 
 router.start(App,'#app');
-window.router = router;
+
+var eventBus = require('./eventBus')(bus,router);
+Object.defineProperties(Vue.prototype, {
+	eventBus:{
+		get:function(){
+			return eventBus;
+		}
+	}
+});
+
 
