@@ -50,10 +50,12 @@
 			cancelCallback:function(){
 				this.show = false;
 				this.$dispatch('cancelCallback',this);
+				eventBus.$dispatch('cancelCallback',this);
 			},
 			confirmCallback: function(){
 				//this.show = false;
 				this.$dispatch('confirmCallback',this);
+
 			},
 			keyupcallback:function(){
 				console.log('duang~');

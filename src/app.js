@@ -7,8 +7,14 @@ var VueRouter = require('vue-router');
 Vue.use(VueTouch);
 var fastclick = require('fastclick');
 fastclick.attach(document.body);
+
 // register filters 自定义过滤器  金额格式化，
 var filters = require('./filters');
+
+//eventBus，全局事件，比如 toast
+var eventBus = require('./eventBus')(Vue);
+window.eventBus = eventBus;
+
 Object.keys(filters).forEach(function(k) {
   Vue.filter(k, filters[k]);
 });

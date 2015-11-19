@@ -6,7 +6,9 @@ module.exports = function(router){
 		},
 		'/about':{
 			name:'about',
-			component: require('./views/about.vue')
+			component: function(reslove){
+				return require(['./views/about.vue'],reslove)
+			}
 		},
 		'/my_views': {
 			name:'my_views',
@@ -52,6 +54,13 @@ module.exports = function(router){
 				//异步加载，
 				//例子
 				return require(['./views/async.vue'],reslove)
+			}
+		},
+		//触摸事件
+		'touch':{
+			name:'touch',
+			component:function(reslove){
+				return require(['./views/touch.vue'],reslove)
 			}
 		},
 		// not found handler

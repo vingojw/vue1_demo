@@ -15,11 +15,11 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 // 在命令行 输入  “PRODUCTION=1 webpack --progress” 就会打包压缩，并且注入md5戳 到 d.html里面
 var production = process.env.PRODUCTION;
-console.log(production);
+
 var plugins = [
   //会将所有的样式文件打包成一个单独的style.css
   new ExtractTextPlugin( production ? "style.[hash].css" : "style.css" , {
-    disable: false,
+    disable: true//,
     //allChunks: true  //所有独立样式打包成一个css文件
   }),
   //new ExtractTextPlugin("[name].css" )
@@ -32,7 +32,13 @@ if (process.env.PRODUCTION) {
   //压缩
   plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false } }));
 
-  //版本控制
+  /*
+    版本控制
+    package.json中的
+      "html-webpack-plugin": "^1.6.2",
+    模块是把生成的带有md5戳的文件，插入到index.html中。
+    通过index.tpl模板，最后在根目录下生成一个 d.html 文件，此文件代表了index.html
+   */
   var HtmlWebpackPlugin = require("html-webpack-plugin");
   //HtmlWebpackPlugin文档 https://www.npmjs.com/package/html-webpack-plugin
   //https://github.com/ampedandwired/html-webpack-plugin/issues/52
@@ -41,6 +47,7 @@ if (process.env.PRODUCTION) {
     template:'index.tpl',
     inject:true //此参数必须加上，不加不注入
   }));
+
 }
 
 
@@ -89,3 +96,5 @@ module.exports = {
     //     extensions: ['', '.js', '.json', '.coffee','vue']
     // }
 };
+
+

@@ -5,6 +5,7 @@
 </template>
 
 <script>
+	require('../css/b.css');
 	module.exports = {
 		//props: ['父组建传的值'],
 		data:function(){

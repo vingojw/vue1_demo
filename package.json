@@ -22,7 +22,8 @@
     "vue-loader": "^4.0.10",
     "vue-router": "^0.7.6",
     "webpack": "^1.12.3",
-    "webpack-dev-server": "^1.12.1"
+    "webpack-dev-server": "^1.12.1",
+    "webpack-zepto": "0.0.1"
   },
   "scripts": {
     "dev": "webpack-dev-server --progress --profile --colors --inline ",

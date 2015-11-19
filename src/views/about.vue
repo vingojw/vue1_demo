@@ -19,11 +19,14 @@
 <img width="20px" height="20px" src="http://img.yaomaiche.com/upload/image/original/carGoods/53cda9a6-05f2-4cae-a778-02f358c9cad6.png" alt="">
   <img :src='imageSrc'>
   <div class="img_holder"></div>
-  图片下的文字
+
+  图片下的文字111
+  {{ 1000000|price }}
  </div>
 </template>
 
 <script>
+require('../css/a.css');
 module.exports = {
 	data:function(){
 		return {
@@ -37,11 +40,13 @@ module.exports = {
 			this.$root.$set('header',this.title);
 			transition.next();
 		}
-	},
+	}
 };
 </script>
+
 <style>
-	.img_holder{
+/*注释*/
+	.img_holder1{
 		width:100%;
 		padding-bottom: 100%;
 		background: url(../images/logo.png) no-repeat;

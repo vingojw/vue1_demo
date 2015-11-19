@@ -21,7 +21,8 @@
 	</pre>
 
 	<p>注意：第一次进入 和 再次进入（试着切换到其他路径，再回来） </p>
-
+	<button @click="a+=1">{{a}}</button>
+	<button @click="add">{{a}}</button>
 </div>
 </template>
 
@@ -36,7 +37,16 @@
 	 		return {
 	 			msg: '各个阶段，可以查看控制台输出，message from my-views',
 	 			title:'my_views',
-	 			lifecycle:lifecycle
+	 			lifecycle:lifecycle,
+	 			a:0
+	 		}
+	 	},
+	 	methods:{
+	 		add:function(){
+	 			var d = this.$data;
+	 			setTimeout(function(){
+	 				d.a+=1;
+	 			},100);
 	 		}
 	 	},
 	 	//这里才是route的生存周期

@@ -18,6 +18,7 @@
   border:2px solid #000;
   margin-top:20px;
   padding:1em;
+  overflow: auto;
 }
 
 
@@ -111,6 +112,7 @@ nav > a,button{
     <a v-link="{ name: 'slider_view' }">slider with swiper</a>
     <a v-link="{ name: 'test_view' }">test.vue 测试字符,压缩后</a>
     <a v-link="{ name: 'async' }">async 异步加载</a>
+    <a v-link="{ name: 'touch' }">touch事件</a>
     </nav>
     <p>
     <button @click="showModal = !showModal">Show Modal 全局</button>
@@ -121,10 +123,6 @@ nav > a,button{
     <button @click="showToast">Toast 默认 2.5s</button>
     <button @click="customShowToast">Toast自定义时长 4s</button>
     <button @click="splitting">试试按需加载</button>
-    <div @click="click" style="width:200px;height:200px;background:red;">click{{eventLog}}</div>
-    <div v-touch:tap="tap" style="width:200px;height:200px;background:red;">tap{{eventLog}}</div>
-    <div v-touch:swipe="swipe" style="width:200px;height:200px;background:red;">swipe{{eventLog}}</div>
-    <div v-touch:press="press(this)" style="width:200px;height:200px;background:red;">Press{{eventLog}}</div>
     </p>
     <router-view class="view" id="view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
 
@@ -199,7 +197,7 @@ nav > a,button{
       </div>
     </asidebar>
 
-    <p>页面状态 <pre>{{$data | json}}</pre></p>
+    <p>页面状态 <pre style="width:100%;overflow: auto;">{{$data | json}}</pre></p>
 
     <!--toast-->
     <toast v-ref:toast :toast.sync="toast">
@@ -326,18 +324,6 @@ module.exports = {
         //   _this.$route.router.go({name:'splitting'});
         // });
 
-      },
-      click:function(){
-        this.eventLog = 'eventLog'+Math.random();
-      },
-      tap:function(){
-        this.eventLog = 'tap'+Math.random();
-      },
-      swipe:function(){
-        this.eventLog = 'swipe'+Math.random();
-      },
-      press:function(e){
-        this.eventLog = e+''+Math.random();
       }
     },
     ready:function(){
