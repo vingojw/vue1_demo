@@ -56,6 +56,8 @@
 
 [vue-strap 用vue实现bootstrap](https://github.com/yuche/vue-strap)
 
+[vue-mui](https://github.com/mennghao/vue-mui)
+
 [通过学习（copy）以上两个demo，使用 Vue1.0 + VueRouter + webpack](https://github.com/vingojw/vue-vueRoute-webpack)
 
 [Chat by Vue + Webpack](https://github.com/Coffcer/vue-chat)
