@@ -17,7 +17,8 @@
 <img width="20px" height="20px" src="http://img.yaomaiche.com/upload/image/original/carGoods/53cda9a6-05f2-4cae-a778-02f358c9cad6.png" alt="">
 <img width="20px" height="20px" src="http://img.yaomaiche.com/upload/image/original/carGoods/53cda9a6-05f2-4cae-a778-02f358c9cad6.png" alt="">
 <img width="20px" height="20px" src="http://img.yaomaiche.com/upload/image/original/carGoods/53cda9a6-05f2-4cae-a778-02f358c9cad6.png" alt="">
-  <img :src='imageSrc'>
+  <img v-bind:src="imageSrc">
+  <img v-bind:src="'http://'+imageSrc"><!--拼接方式-->
   <div class="img_holder"></div>
 
   图片下的文字111
