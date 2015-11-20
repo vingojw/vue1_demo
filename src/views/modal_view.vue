@@ -2,14 +2,17 @@
 <div>
 	  <button type="text" @click = "showModal=true"> 显示该页面modal </button>
 	  <button type="text" @click = "showM"> 显示主页的modalEventBus </button>
-	  <modal :show.sync="showModal" v-ref:index-modal> <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325-->
+	  <modal :show.sync="showModal" :confirmfn.sync="confirmfn"  :cancelfn.sync="cancelfn" v-ref:index-modal> <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325-->
       <!--
         you can use custom content here to overwrite
         default content
       -->
 
-      <h3 slot="header">头部内容</h3>
-      <h3 slot="body"><span v-text="modalbody"></span></h3>
+      <h3 slot="header">这是嵌入到页面中单独的modal</h3>
+      <h3 slot="body">
+      	通过设置，以下属性传值
+      		:confirmfn.sync="confirmfn"  :cancelfn.sync="cancelfn"
+      </h3>
     </modal>
 </div>
 </template>
@@ -33,8 +36,23 @@
 		},
 		methods:{
 			showM:function(){
-				debugger;
-				this.eventBus.$dispatch('showModal',this);
+				this.eventBus.$dispatch('showModal',{
+					template:'template',
+					cancel:function(){
+						console.log('eventBus_showModal_cancelCallback');
+						this.show = false;
+					},
+					confirm:function(){
+						console.log('eventBus_showModal_cancelCallback');
+						this.show = false;
+					}
+				});
+			},
+			confirmfn:function(){
+				this.showModal = false;
+			},
+			cancelfn:function(){
+				this.showModal = false;
 			}
 		}
 	}

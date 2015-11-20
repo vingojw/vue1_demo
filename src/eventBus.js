@@ -1,16 +1,12 @@
 
 module.exports = function(eventBus,router){
- 
-	eventBus.$on('cancelCallback',function(child){
-		console.log('modal弹窗-页面的cancelCallBack回调，全局事件:eventBus');
-	});
+ 	var refs = router.app.$refs;
 
-	eventBus.$on('showModal',function(){
-		var modal = router.app.$refs.indexModal;
+	eventBus.$on('showModal',function(opt){
+		var modal = refs.indexModal;
+		modal.cancelfn = opt.cancel;
+		modal.confirmfn = opt.confirm;
 		modal.show = true;
-		setTimeout(function(){
-			modal.show = false;
-		},1000);
 	});
 
 	return eventBus;

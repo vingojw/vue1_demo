@@ -19,7 +19,6 @@ var App = Vue.extend(require('./app.vue'));
 //eventBus，全局事件，比如 toast
 var bus = new Vue();
 
-
 Vue.use(VueRouter);
 
 var router = new VueRouter(
@@ -39,7 +38,11 @@ require('./routers')(router);
 
 router.start(App,'#app');
 
+//全局的事件处理
 var eventBus = require('./eventBus')(bus,router);
+
+//想通过此方式绑定一个全局事件,貌似，没啥意义，在eventBus里面必须用到router
+//还不如直接绑定到 app.vue然后子组件通过向上传递
 Object.defineProperties(Vue.prototype, {
 	eventBus:{
 		get:function(){

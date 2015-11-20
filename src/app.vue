@@ -11,14 +11,11 @@
 }
 
 
-
-
 .view {
   transition: all .3s ease;
   border:2px solid #000;
   margin-top:20px;
   padding:1em;
-  overflow: auto;
 }
 
 

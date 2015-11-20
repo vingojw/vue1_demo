@@ -19,7 +19,7 @@ var production = process.env.PRODUCTION;
 var plugins = [
   //会将所有的样式文件打包成一个单独的style.css
   new ExtractTextPlugin( production ? "style.[hash].css" : "style.css" , {
-    disable: true//,
+    disable: false//,
     //allChunks: true  //所有独立样式打包成一个css文件
   }),
   //new ExtractTextPlugin("[name].css" )

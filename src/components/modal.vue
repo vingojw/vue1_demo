@@ -37,32 +37,30 @@
 				require:true,
 				type:Boolean
 			},
-			// cancelCallback1: {
-			// 	type: Function,
-			// 	default: function(){}
-			// },
-			// confirmCallback1: {
-			// 	type: Function,
-			// 	default: function(){}
-			// }
+			cancelfn: {
+				type: Function,
+				default: function(){}
+			},
+			confirmfn: {
+				type: Function,
+				default: function(){}
+			}
 		},
 		methods:{
 			cancelCallback:function(){
-				this.show = false;
-				this.$dispatch('cancelCallback',this);
-				eventBus.$dispatch('cancelCallback',this);
+				this.cancelfn();
+				this.cancelfn = function(){};
 			},
 			confirmCallback: function(){
-				//this.show = false;
-				this.$dispatch('confirmCallback',this);
-
+				this.confirmfn();
+				this.confirmfn = function(){};
 			},
 			keyupcallback:function(){
 				console.log('duang~');
 			},
 			modalclick:function(e){
-				console.log(e.target);
-				console.log(this.$els.overlay);
+				// console.log(e.target);
+				// console.log(this.$els.overlay);
 				//因为想实现只点击背景层隐藏modal
 				//处理由于冒泡，点击了里面的内容，也导致overlayer隐藏的问题
 				if( e.target === this.$els.overlay ){
