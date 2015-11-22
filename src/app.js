@@ -4,7 +4,6 @@ require('./css/common.css');//加载公共样式
 var Vue = require('vue');
 var VueTouch = require('./vtouch');
 var VueRouter = require('vue-router');
-Vue.use(VueTouch);
 var fastclick = require('fastclick');
 fastclick.attach(document.body);
 
@@ -16,9 +15,15 @@ Object.keys(filters).forEach(function(k) {
 });
 
 var App = Vue.extend(require('./app.vue'));
-//eventBus，全局事件，比如 toast
-var bus = new Vue();
 
+//eventBus，全局事件，比如 toast
+/*
+	要放在 Vue.use(VueRouter); 之前
+	因为当使用了 Vue.use(VueRouter)后，改写了 Vue 的实例化方法。
+ */
+var bus = new Vue();//注意看上面说明
+
+Vue.use(VueTouch);
 Vue.use(VueRouter);
 
 var router = new VueRouter(
@@ -34,10 +39,9 @@ var router = new VueRouter(
 
 require('./routers')(router);
 
-
-
 router.start(App,'#app');
 
+debugger;
 //全局的事件处理
 var eventBus = require('./eventBus')(bus,router);
 
