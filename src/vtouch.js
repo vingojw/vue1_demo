@@ -23,7 +23,6 @@
         var recognizerType, recognizer
 
         if (customeEvents[event]) { // custom event
-debugger;
           var custom = customeEvents[event]
           recognizerType = custom.type
           recognizer = new Hammer[capitalize(recognizerType)](custom)
