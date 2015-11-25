@@ -69,18 +69,7 @@ module.exports = function(router){
 	    }
 	});
 
-	// router.beforeEach((transition) => {
-	// if (transition.to.path === '/forbidden') {
-	// 	router.app.authenticating = true
-	// 	setTimeout(() => {
-	//     router.app.authenticating = false
-	//     alert('this route is forbidden by a global before hook')
-	//     transition.abort()
-	//   }, 1500)
-	// } else {
-	//   transition.next()
-	// }
-	// })
+
 	window.routeList=[];
 	router.beforeEach(function(transition){
 		console.log('before---------------');
