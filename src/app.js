@@ -1,5 +1,6 @@
 
 require('./css/common.css');//加载公共样式
+require('./css/animate.css');//加载公共样式
 
 var Vue = require('vue');
 var VueTouch = require('./vtouch');

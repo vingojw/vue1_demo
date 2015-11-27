@@ -60,58 +60,6 @@
 }
 
 
-/*切换效果 -- 渐隐*/
-.fadein-enter{
-  animation:fadein-in 0.3s ease;
-}
-.fadein-leave{
-  animation:fadein-out 0.3s ease;
-}
-@keyframes fadein-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes fadein-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 
 
-/*切换效果 -- 从右渐入*/
-.fadeInRight-enter {
-	animation:fadeInRight-in 0.3s ease;
-}
-.fadeInRight-leave{
-	animation:fadeInRight-out 0.3s ease;
-}
-@keyframes fadeInRight-in {
-    0% {
-        opacity: 0;
-        transform: translate3d(2000px,0,0)
-    }
-
-    100% {
-        opacity: 1;
-        transform: none
-    }
-}
-@keyframes fadeInRight-out {
-    0% {
-    	opacity: 1;
-    	transform: none
-    }
-
-    100% {
-        opacity: 0;
-        transform: translate3d(-2000px,0,0)
-    }
-}
 </style>

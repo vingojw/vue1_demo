@@ -109,122 +109,9 @@
     bottom:0;
     top:auto;
   }
-  .slideleft-enter {
-    animation:slideleft-in .3s;
-  }
+ 
 
-  .slideleft-leave {
-    animation:slideleft-out .3s;
-  }
 
-  @keyframes slideleft-in {
-    0% {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideleft-out {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-  }
-
-  .slideright-enter {
-    animation:slideright-in .3s;
-  }
-  .slideright-leave {
-    animation:slideright-out .3s;
-  }
-
-  @keyframes slideright-in {
-    0% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideright-out {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-  }
-
-  .slidetop-enter {
-    animation:slidetop-in .3s;
-  }
-
-  .slidetop-leave {
-    animation:slidetop-out .3s;
-  }
-
-  @keyframes slidetop-in {
-    0% {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slidetop-out {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-  }
-
-  .slidebottom-enter {
-    animation:slidebottom-in .3s;
-  }
-  .slidebottom-leave {
-    animation:slidebottom-out .3s;
-  }
-
-  @keyframes slidebottom-in {
-    0% {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  @keyframes slidebottom-out {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-  }
 
   .aside:focus {
       outline: 0
@@ -284,7 +171,6 @@
 
   .aside-backdrop.in {
       opacity: .5;
-      filter: alpha(opacity=50)
   }
 
 
