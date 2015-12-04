@@ -20,7 +20,7 @@
     "vue": "^1.0.10",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^4.0.10",
-    "vue-router": "^0.7.6",
+    "vue-router": "^0.7.7",
     "webpack": "^1.12.3",
     "webpack-dev-server": "^1.12.1",
     "webpack-zepto": "0.0.1"

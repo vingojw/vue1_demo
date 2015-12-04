@@ -42,7 +42,7 @@ require('./routers')(router);
 
 router.start(App,'#app');
 
-debugger;
+
 //全局的事件处理
 var eventBus = require('./eventBus')(bus,router);
 

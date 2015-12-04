@@ -83,7 +83,9 @@ nav > a,button{
   border: 2px solid #000;
   text-decoration: none;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 </style>
 
 <template>
