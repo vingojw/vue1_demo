@@ -111,6 +111,7 @@ nav > a,button{
     <a v-link="{ name: 'slider_view' }">slider with swiper</a>
     <a v-link="{ name: 'test_view' }">test.vue 测试字符,压缩后</a>
     <a v-link="{ name: 'async' }">async 异步加载</a>
+    <a v-link="{ name: 'async_loading' }">async 异步加载(阻塞)，点击先请求数据，请求完毕后(3s)切换</a>
     <a v-link="{ name: 'touch' }">touch事件</a>
     </nav>
     <p>

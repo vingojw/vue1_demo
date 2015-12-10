@@ -55,7 +55,17 @@ module.exports = function(router){
 				//例子
 				return require(['./views/async.vue'],reslove)
 			}
+		},		
+		'async_loading':{
+			//http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
+			name:'async_loading',
+			component: function(reslove){
+				//异步加载，
+				//例子
+				return require(['./views/async_loading.vue'],reslove)
+			}
 		},
+
 		//触摸事件
 		'touch':{
 			name:'touch',
