@@ -3,6 +3,14 @@
 npm install
 npm run dev
 ```
+localhost:8080
+
+如果想在手机上查看
+
+```
+npm run ip
+```
+你本地的ip:8080
 
 ## 目录结构
 <pre>
