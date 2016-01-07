@@ -12,6 +12,20 @@ npm run ip
 ```
 你本地的ip:8080
 
+###版本控制，压缩
+MAC
+
+```
+npm run build
+```
+
+windows
+
+```
+PRODUCTION=1 webpack
+
+```
+
 ## 目录结构
 <pre>
 │  .gitignore          # 忽略无需git控制的文件  比如 node_modules
