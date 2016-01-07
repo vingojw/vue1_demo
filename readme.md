@@ -12,7 +12,7 @@ npm run ip
 ```
 你本地的ip:8080
 
-###版本控制，压缩
+## 版本控制，打包压缩
 MAC
 
 ```
@@ -23,7 +23,6 @@ windows
 
 ```
 PRODUCTION=1 webpack
-
 ```
 
 ## 目录结构

@@ -1,3 +1,16 @@
+//先清空 n-build 文件夹下的文件
+var fs = require('fs'),buildPath='./build/';
+var folder_exists = fs.existsSync(buildPath);
+if(folder_exists == true)
+{
+   var dirList = fs.readdirSync(buildPath);
+   dirList.forEach(function(fileName)
+   {
+       fs.unlinkSync(buildPath + fileName);
+   });
+   console.log("clearing " + buildPath);
+};
+
 var webpack = require('webpack');
 
 //var vue = require("vue-loader");
