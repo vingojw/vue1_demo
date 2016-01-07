@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 
-var vue = require("vue-loader");
+//var vue = require("vue-loader");
 
 //混淆压缩
 var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
@@ -76,10 +76,7 @@ module.exports = {
             // 但是使用这种方式后 原先可以在vue组件中 在style里面加入 scoped 就不能用了,
             // 好处是使用了cssnext，那么样式按照标准的来写就行了，会自动生成兼容代码 http://cssnext.io/playground/
             {test: /\.vue$/,
-              loader: vue.withLoaders({
-                css: ExtractTextPlugin.extract("style-loader",
-                  "css-loader?sourceMap!cssnext-loader")
-              })
+              loader: 'vue'
             },
             {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!cssnext-loader")},
             {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}, // 内联 base64 URLs, 限定 <=8k 的图片, 其他的用 URL
@@ -88,6 +85,11 @@ module.exports = {
             {test: /\.eot$/,    loader: "file"},
             {test: /\.svg$/,    loader: "file"}
        ]
+    },
+    vue:{
+      css:ExtractTextPlugin.extract("style-loader",
+                  "css-loader?sourceMap!cssnext-loader")
+           
     },
     plugins : plugins,
     devtool: 'source-map'//,
