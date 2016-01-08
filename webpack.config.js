@@ -38,6 +38,15 @@ var plugins = [
   //new ExtractTextPlugin("[name].css" )
   //自动分析重用的模块并且打包成单独的文件
   new CommonsChunkPlugin(production ? "vendor.[hash].js" : "vendor.js" ),
+  function(){
+      return this.plugin('done', function(stats) {
+        var content;
+        //这里可以拿到hash值   参考：http://webpack.github.io/docs/long-term-caching.html
+        content = JSON.stringify(stats.toJson().assetsByChunkName, null, 2);
+        console.log('版本是：'+JSON.stringify(stats.toJson().hash));
+        return fs.writeFileSync('build/assets.json', content);
+      });
+  }
 ];
 
 //发布编译时，压缩，版本控制
@@ -102,7 +111,7 @@ module.exports = {
     vue:{
       css:ExtractTextPlugin.extract("style-loader",
                   "css-loader?sourceMap!cssnext-loader")
-           
+
     },
     plugins : plugins,
     devtool: 'source-map'//,
