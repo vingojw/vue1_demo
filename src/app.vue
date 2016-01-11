@@ -90,6 +90,8 @@ nav > a,button{
 
 <template>
   <div class="app">
+    <h2>循环的连接</h2>
+    <a  v-for="item in items" v-link="item" v-text="item.name"></a>
 
     <p v-if="authenticating" style="color:red">Authenticating...</p>
     <h1 v-text="header">App Header</h1>
@@ -217,6 +219,53 @@ nav > a,button{
 module.exports = {
     data: function() {
       return {
+        items:{
+          '/':{
+            name:'home'
+          },
+          '/about':{
+            name:'about'
+          },
+          '/my_views': {
+            name:'my_views'
+          },
+          '/my_views/:viewId': {
+            name:'my_views_detail'
+          },
+          '/modal_view': {
+            name:'modal_view'
+          },
+          '/select_view': {
+            name:'select_view'
+          },
+          '/radio_view': {
+            name:'radio_view'
+          },
+          '/tab_view': {
+            name:'tab_view'
+          },
+          '/slider_view': {
+            name:'slider_view'
+          },
+          '/forbidden':{
+            name:'forbidden'
+          },
+          '/test':{
+            name:'test_view'
+          },
+          'async':{
+            //http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
+            name:'async'
+          },
+          'async_loading':{
+            //http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
+            name:'async_loading'
+          },
+          //触摸事件
+          'touch':{
+            name:'touch'
+          }
+        },
         effect          : 'fade',
         vvv             : '参数',        //用于 传参
         header          : '首页',
