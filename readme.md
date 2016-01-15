@@ -16,13 +16,13 @@ npm run ip
 MAC
 
 ```
-npm run build
+npm run mb
 ```
 
 windows
 
 ```
-PRODUCTION=1 webpack
+npm run wb
 ```
 
 ## 目录结构

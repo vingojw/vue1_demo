@@ -33,7 +33,8 @@
     "webpack-zepto": "0.0.1"
   },
   "scripts": {
-    "build": "export PRODUCTION=1 && webpack --progress --hide-modules",
+    "mb": "export PRODUCTION=1 && webpack --progress --hide-modules",
+    "wb": "set PRODUCTION=1 && webpack --progress --hide-modules",
     "dev": "webpack-dev-server --progress --profile --colors --inline ",
     "port": "webpack-dev-server --progress --colors --inline --port 9090 ",
     "hot": "webpack-dev-server --progress --colors --inline --hot",

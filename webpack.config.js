@@ -11,6 +11,18 @@ if(folder_exists == true)
    console.log("clearing " + buildPath);
 };
 
+//readfile
+//先把index.html里面关于style和js的hash值都删除掉，避免在使用 npm run dev 的时候，路径还是压缩后的路劲
+fs.readFile("index.html",'utf-8',function(err,data){
+    if(err){
+        console.log("error");
+    }else{
+      //将index.html里面的hash值清除掉
+      var devhtml = data.replace(/((?:href|src)="[^"]+\.)(\w{20}\.)(js|css)/g, '$1$3');
+      fs.writeFileSync('index.html', devhtml);
+    }
+});
+
 var webpack = require('webpack');
 
 //var vue = require("vue-loader");
@@ -53,24 +65,23 @@ var plugins = [
 if (process.env.PRODUCTION) {
   //压缩
   plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false } }));
-
-  /*
-    版本控制
-    package.json中的
-      "html-webpack-plugin": "^1.6.2",
-    模块是把生成的带有md5戳的文件，插入到index.html中。
-    通过index.tpl模板，最后在根目录下生成一个 d.html 文件，此文件代表了index.html
-   */
-  var HtmlWebpackPlugin = require("html-webpack-plugin");
-  //HtmlWebpackPlugin文档 https://www.npmjs.com/package/html-webpack-plugin
-  //https://github.com/ampedandwired/html-webpack-plugin/issues/52
-  plugins.push( new HtmlWebpackPlugin({
-    filename:'../d.html',//会生成d.html在根目录下,并注入脚本
-    template:'index.tpl',
-    inject:true //此参数必须加上，不加不注入
-  }));
-
 }
+
+/*
+  版本控制
+  package.json中的
+    "html-webpack-plugin": "^1.6.2",
+  模块是把生成的带有md5戳的文件，插入到index.html中。
+  通过index.tpl模板，生成 index.html
+ */
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+//HtmlWebpackPlugin文档 https://www.npmjs.com/package/html-webpack-plugin
+//https://github.com/ampedandwired/html-webpack-plugin/issues/52
+plugins.push( new HtmlWebpackPlugin({
+  filename:'../index.html',//会生成d.html在根目录下,并注入脚本
+  template:'index.tpl',
+  inject:true //此参数必须加上，不加不注入
+}));
 
 
 module.exports = {
@@ -83,7 +94,7 @@ module.exports = {
                 publicPath: "/util/vue/build/",
                 此字段配置如果不正确，发布后资源定位不对，比如：css里面的精灵图路径错误
          */
-        publicPath: production ? "/util/vue/build/":"/build/",
+        publicPath: "/build/",
         filename: production ? "build.[hash].js" : "build.js"//"build.[hash].js"//[hash]MD5戳   解决html的资源的定位可以使用 webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
     },
     module: {
