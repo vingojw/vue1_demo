@@ -108,7 +108,8 @@ module.exports = {
             // 加载vue组件，并将css全部整合到一个style.css里面
             // 但是使用这种方式后 原先可以在vue组件中 在style里面加入 scoped 就不能用了,
             // 好处是使用了cssnext，那么样式按照标准的来写就行了，会自动生成兼容代码 http://cssnext.io/playground/
-            {test: /\.vue$/,
+            {
+              test: /\.vue$/,
               loader: 'vue'
             },
             {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!cssnext-loader")},

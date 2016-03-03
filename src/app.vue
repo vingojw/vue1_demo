@@ -90,9 +90,6 @@ nav > a,button{
 
 <template>
   <div class="app">
-    <h2>循环的连接</h2>
-    <a  v-for="item in items" v-link="item" v-text="item.name"></a>
-
     <p v-if="authenticating" style="color:red">Authenticating...</p>
     <h1 v-text="header">App Header</h1>
     <p>当前路径: {{$route.path}}</p>
@@ -125,7 +122,11 @@ nav > a,button{
     <button @click="showToast">Toast 默认 2.5s</button>
     <button @click="customShowToast">Toast自定义时长 4s</button>
     <button @click="splitting">试试按需加载</button>
+    <button @click="renderLinks=!renderLinks">循环生成的链接</button>
     </p>
+    <nav v-show="renderLinks">
+      <a v-for="item in items" v-link="item" v-text="item.name"></a>
+    </nav>
     <router-view class="view" id="view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
 
     <modal :show.sync="showModal" v-ref:index-modal > <!--此种写法详情 https://github.com/yyx990803/vue/issues/1325 搜 Shorthands -->
@@ -219,6 +220,7 @@ nav > a,button{
 module.exports = {
     data: function() {
       return {
+        renderLinks:false,
         items:{
           '/':{
             name:'home'

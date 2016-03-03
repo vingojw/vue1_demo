@@ -17,12 +17,13 @@ Object.keys(filters).forEach(function(k) {
 
 var App = Vue.extend(require('./app.vue'));
 
-//eventBus，全局事件，比如 toast
+
 /*
+    如果还想声明一个vue实例
 	要放在 Vue.use(VueRouter); 之前
 	因为当使用了 Vue.use(VueRouter)后，改写了 Vue 的实例化方法。
  */
-var bus = new Vue();//注意看上面说明
+//var newV = new Vue();//注意看上面说明
 
 Vue.use(VueTouch);
 Vue.use(VueRouter);
@@ -41,19 +42,3 @@ var router = new VueRouter(
 require('./routers')(router);
 
 router.start(App,'#app');
-
-
-//全局的事件处理
-var eventBus = require('./eventBus')(bus,router);
-
-//想通过此方式绑定一个全局事件,貌似，没啥意义，在eventBus里面必须用到router
-//还不如直接绑定到 app.vue然后子组件通过向上传递
-Object.defineProperties(Vue.prototype, {
-	eventBus:{
-		get:function(){
-			return eventBus;
-		}
-	}
-});
-
-
