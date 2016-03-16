@@ -1,6 +1,6 @@
 <template>
 <p>
-	async
+	<a href="http://vuejs.github.io/vue-router/zh-cn/lazy.html" target="_blank">动态组件载入 lazy load</a>
 </p>
 </template>
 

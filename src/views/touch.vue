@@ -64,7 +64,8 @@ Tap事件：在指定的dom区域内，
 
 <style>
 	.touch_area{
-		height:300px;background:red;
+		height:300px;
+		background:#45a3e9;
 		margin-bottom:50px;
 	}
 

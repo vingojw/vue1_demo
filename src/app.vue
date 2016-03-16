@@ -97,31 +97,30 @@ nav > a,button{
     <a v-link="{ name: 'home', exact: true }">首页</a>
     <a v-link="{ name: 'my_views', exact: true }">组件生命周期</a>
     <a v-link="{ name: 'my_views_detail', params: { viewId:vvv } }">url传值</a>
-    <a v-link="{ path: '/my_views?viewId='+vvv}">修改为原来/foo?user=1 的方式（变量）</a>
-    <a v-link="{ path: '/my_views?viewId=vvv'}">修改为原来/foo?user=1 的方式（字符串）</a>
+<!--     <a v-link="{ path: '/my_views?viewId='+vvv}">修改为原来/foo?user=1 的方式（变量）</a>
+    <a v-link="{ path: '/my_views?viewId=vvv'}">修改为原来/foo?user=1 的方式（字符串）</a> -->
     <a v-link="{ name: 'about' }">about</a>
     <!-- 如果是一个不存在的页面，那么用name 属性 -->
     <a v-link="{ name: 'forbidden' }">在路由全局设置终止</a>
     <a v-link="{ path: '/nofound' }">404</a> <!--这里不能使用 具名路径-->
-    <a v-link="{ name: 'modal_view' }">modal弹窗-页面</a>
+    <a v-link="{ name: 'modal_view' }">modal弹窗</a>
     <a v-link="{ name: 'select_view' }">select</a>
     <a v-link="{ name: 'radio_view' }">radio</a>
     <a v-link="{ name: 'tab_view' }">tab选项卡</a>
     <a v-link="{ name: 'slider_view' }">slider with swiper</a>
     <a v-link="{ name: 'test_view' }">test.vue 测试字符,压缩后</a>
-    <a v-link="{ name: 'async' }">async 异步加载</a>
-    <a v-link="{ name: 'async_loading' }">async 异步加载(阻塞)，点击先请求数据，请求完毕后(3s)切换</a>
+    <a v-link="{ name: 'async' }">动态组件载入 lazy load</a>
+    <a v-link="{ name: 'async_loading' }">动态组件载入 lazy load(阻塞)，点击先请求数据，请求完毕后(3s)切换</a>
     <a v-link="{ name: 'touch' }">touch事件</a>
     </nav>
     <p>
-    <button @click="showModal = !showModal">Show Modal 全局</button>
+    <button @click="showModal = !showModal">全局弹窗</button>
+    <button @click="showToast">Toast 默认 2.5s</button>
+    <button @click="customShowToast">Toast自定义时长 4s</button>
     <button @click="showLeftAside = true">Aside left</button>
     <button @click="showRightAside = true">Aside right</button>
     <button @click="showTopAside = true">Aside top</button>
     <button @click="showBottomAside = true">Aside bottom</button>
-    <button @click="showToast">Toast 默认 2.5s</button>
-    <button @click="customShowToast">Toast自定义时长 4s</button>
-    <button @click="splitting">试试按需加载</button>
     <button @click="renderLinks=!renderLinks">循环生成的链接</button>
     </p>
     <nav v-show="renderLinks">
@@ -225,14 +224,17 @@ module.exports = {
           '/':{
             name:'home'
           },
-          '/about':{
-            name:'about'
-          },
           '/my_views': {
             name:'my_views'
           },
           '/my_views/:viewId': {
             name:'my_views_detail'
+          },
+          '/about':{
+            name:'about'
+          },
+          '/forbidden':{
+            name:'forbidden'
           },
           '/modal_view': {
             name:'modal_view'
@@ -248,9 +250,6 @@ module.exports = {
           },
           '/slider_view': {
             name:'slider_view'
-          },
-          '/forbidden':{
-            name:'forbidden'
           },
           '/test':{
             name:'test_view'
@@ -343,38 +342,6 @@ module.exports = {
       //自定义时长
       customShowToast:function(){
         this.toast = { content : '自定义时长4s...', timer : 4000};
-      },
-      //按需加载
-      splitting:function(){
-        //加载完毕后添加到map中
-        var _this = this;
-        require.ensure(['./views/splitting.vue'], function(require) {
-          var splitting = require('./views/splitting.vue');
-          _this.$route.router.map({
-            '/splitting_view':{
-              name:'splitting',
-              component: splitting
-            }
-          });
-
-          //加载完毕后再跳转
-          _this.$route.router.go({name:'splitting'});
-
-        });
-
-        //如果使用bundle-loader  会报错
-        // var load = require("bundle!./views/splitting.vue");
-        // load(function(file){
-        //   _this.$route.router.map({
-        //     '/splitting_view':{
-        //     name:'splitting',
-        //     component: splitting
-        //     }
-        //   });
-        //   //加载完毕后再跳转
-        //   _this.$route.router.go({name:'splitting'});
-        // });
-
       }
     },
     ready:function(){

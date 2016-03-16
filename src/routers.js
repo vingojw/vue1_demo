@@ -49,13 +49,14 @@ module.exports = function(router){
 		},
 		'async':{
 			//http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
+			//http://vuejs.github.io/vue-router/zh-cn/lazy.html
 			name:'async',
 			component: function(reslove){
 				//异步加载，
 				//例子
 				return require(['./views/async.vue'],reslove)
 			}
-		},		
+		},
 		'async_loading':{
 			//http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
 			name:'async_loading',
@@ -79,7 +80,6 @@ module.exports = function(router){
 	    }
 	});
 
-
 	window.routeList=[];
 	router.beforeEach(function(transition){
 		console.log('before---------------');
@@ -91,7 +91,6 @@ module.exports = function(router){
 		// //如果是中止，这里可以判断用户登录
 		// //if(transition.to.path === '/forbidden'){
 		if(transition.to.name == 'forbidden'){
-
 			router.app.authenticating = true
 			setTimeout(function(){
 				router.app.authenticating = false
@@ -101,14 +100,11 @@ module.exports = function(router){
 		}
 
 		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
-			console.log('返回');
-
 			router.app.effect='back';
 			routeList.splice(routeList.length-1,1);
 			console.log(routeList);
 		} else {
 			router.app.effect='fade';
-
 			routeList.push({
 				name : transition.to.name,
 				path : transition.to.path,
@@ -126,14 +122,9 @@ module.exports = function(router){
 
 	//可以记录访问路径
 	router.afterEach(function(transition){
-		console.log('after');
-
-
-
+		console.log('-----------------after');
 		for (var i = 0; i < routeList.length; i++) {
 			console.log(routeList[i].name);
 		};
-
 	});
-
 }

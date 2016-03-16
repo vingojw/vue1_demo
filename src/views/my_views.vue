@@ -5,24 +5,21 @@
 </style>
 <template>
 <div> <!--要使用 $loadingRouteData 过渡效果的时候 不能用作片段，必须要在最外层包一层div-->
+	<p>在模板中使用 $loadingRouteData ：</p>
 	<div v-if="$loadingRouteData" >Loading ...这里是在data钩子切换的时候获取的$loadingRouteData的元素属性，此操作必须是在一个延迟方法中进行的</div>
 	<div v-if="!$loadingRouteData" class="my-views">
 		<div v-show="a" >这里是data 获取完数据过渡之后获取的值 {{a}}</div>
 		<h2>{{msg}}</h2>
 	</div>
 
-	<h3>获取的query</h3>
-		{{$route.query|json}}
+	<h3>获取的query : {{$route.query|json}} <a v-link="{name:'my_views',query:{a:1}}">修改query</a></h3>
+
 
 	<p>触发顺序</p>
 	<pre style="line-height:1.5">
 	<div v-for="(k, val) in lifecycle" track-by="$index">{{k}} --> {{{val}}}</div>
-
 	</pre>
-
 	<p>注意：第一次进入 和 再次进入（试着切换到其他路径，再回来） </p>
-	<button @click="a+=1">{{a}}</button>
-	<button @click="add">{{a}}</button>
 </div>
 </template>
 
@@ -37,16 +34,7 @@
 	 		return {
 	 			msg: '各个阶段，可以查看控制台输出，message from my-views',
 	 			title:'my_views',
-	 			lifecycle:lifecycle,
-	 			a:0
-	 		}
-	 	},
-	 	methods:{
-	 		add:function(){
-	 			var d = this.$data;
-	 			setTimeout(function(){
-	 				d.a+=1;
-	 			},100);
+	 			lifecycle:lifecycle
 	 		}
 	 	},
 	 	//这里才是route的生存周期
@@ -85,7 +73,7 @@
 					//这里 _this.$loadingRouteData 是 true
 					transition.next({msg:'加载后的数据'});
 					//在调用完transition.next 后，_this.$loadingRouteData 为 false
-				}.bind(this),3000);
+				}.bind(this),4000);
 			},
 			canDeactivate:function(transition){
 				this.lifecycle.push("route.data <a href='http://vuejs.github.io/vue-router/zh-cn/pipeline/can-deactivate.html'>在验证阶段，当一个组件将要被切出的时候被调用。</a>");
