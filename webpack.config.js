@@ -38,7 +38,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
 
-// 在命令行 输入  “PRODUCTION=1 webpack --progress” 就会打包压缩，并且注入md5戳 到 d.html里面
+// 在命令行 输入  “PRODUCTION=1 webpack --progress” 就会打包压缩，并且注入md5戳 到 index.html里面
 var production = process.env.PRODUCTION;
 
 var plugins = [
@@ -78,7 +78,7 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 //HtmlWebpackPlugin文档 https://www.npmjs.com/package/html-webpack-plugin
 //https://github.com/ampedandwired/html-webpack-plugin/issues/52
 plugins.push( new HtmlWebpackPlugin({
-  filename:'../index.html',//会生成d.html在根目录下,并注入脚本
+  filename:'../index.html',//会生成index.html在根目录下,并注入脚本
   template:'index.tpl',
   inject:true //此参数必须加上，不加不注入
 }));
