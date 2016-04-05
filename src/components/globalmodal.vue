@@ -1,29 +1,17 @@
 <template>
-		<div class="modal-mask" v-if="show" transition="modal" transition-mode="out-in">
+		<div class="modal-mask" v-show="show" transition="modal" transition-mode="out-in">
 			<div class="modal-wrapper" v-el:overlay @click.self.stop="show=false" >
 				<div class="modal-container">
 					<div class="modal-header">
 						<span class="modal-close"  @click="show=false"></span>
-						<slot name="header">
-						default header
-						</slot>
+						{{globalmodal.title}}
 					</div>
 					<div class="modal-body">
-						<slot name="body">
-						default body
-						</slot>
+						 {{globalmodal.content}}
 					</div>
 					<div class="modal-footer">
-						<slot name="footer">
-							试试在input里面输入一些文字
-							<input type="text" v-el:inp @keyup="modalkeyup">
-							<button class="modal-default-button" @click="confirmCallback">
-								OK
-							</button>
-							<button class="modal-default-button" v-on:click="cancelCallback">
-								Cancel
-							</button>
-						</slot>
+						 <button @click="confirmCallback">确定</button>
+						 <button @click="cancelCallback">取消</button>
 					</div>
 				</div>
 			</div>
@@ -32,36 +20,31 @@
 
 <script>
 	module.exports = {
+		data:function(){
+			return {
+				show:false
+			}
+		},
 		props: {
-			show:{
-				require:true,
-				type:Boolean
-			},
-			cancelfn: {
-				type: Function,
-				default: function(){}
-			},
-			confirmfn: {
-				type: Function,
-				default: function(){}
+			globalmodal: {
+				type: Object
+			}
+		},
+		watch:{
+			'globalmodal.rd':function(val){
+				this.show = true;
 			}
 		},
 		methods:{
 			cancelCallback:function(){
-				this.cancelfn();
-				this.cancelfn = function(){};
+				this.globalmodal.cancelFn();
+				this.globalmodal.cancelFn = function(){};
 				this.show = false;
 			},
 			confirmCallback: function(){
-				this.confirmfn();
-				this.confirmfn = function(){};
+				this.globalmodal.confirmFn();
+				this.globalmodal.confirmFn = function(){};
 				this.show = false;
-			},
-			keyupcallback:function(){
-				console.log('duang~');
-			},
-			modalkeyup:function(e){
-				this.$root.modalbody = e.target.value;
 			}
 		}
 	}

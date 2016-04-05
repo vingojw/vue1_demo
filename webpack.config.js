@@ -56,7 +56,7 @@ var plugins = [
         //这里可以拿到hash值   参考：http://webpack.github.io/docs/long-term-caching.html
         content = JSON.stringify(stats.toJson().assetsByChunkName, null, 2);
         console.log('版本是：'+JSON.stringify(stats.toJson().hash));
-        return fs.writeFileSync('build/assets.json', content);
+        //return fs.writeFileSync('build/assets.json', content);
       });
   }
 ];

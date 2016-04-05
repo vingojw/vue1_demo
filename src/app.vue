@@ -115,6 +115,7 @@ nav > a,button{
     </nav>
     <p>
     <button @click="showModal = !showModal">全局弹窗</button>
+    <button @click="showGlobalModal">全局弹窗自定义</button>
     <button @click="showToast">Toast 默认 2.5s</button>
     <button @click="customShowToast">Toast自定义时长 4s</button>
     <button @click="showLeftAside = true">Aside left</button>
@@ -157,6 +158,8 @@ nav > a,button{
       <h3 slot="body"><span v-text="modalbody"></span></h3>
       <h3 slot="header">内容</h3>
     </modal>
+    <!--globalmodal-->
+    <globalmodal :globalmodal.sync="globalModal"></globalmodal>
 
     <!--右-->
     <asidebar v-ref:asideR  :show.sync="showRightAside"  :placement.sync="right"  :header.sync="asideLeftTit"  :width.sync="asidewidth">
@@ -294,11 +297,19 @@ module.exports = {
         modalView       : null, //弹窗页
         splittingView   : null, //按需加载
         routeList       : [],    //访问周期中所访问了那些路径,在route.js中设置
-        eventLog        : ''    //触摸事件的时候log
+        eventLog        : '',    //触摸事件的时候log
+        globalModal     :{ //自定义弹层
+          title:'',
+          content:'',
+          confirmFn:function(){},
+          cancelFn:function(){},
+          rd:0
+        }
       };
     },
     components:{
       modal:require('./components/modal.vue'),
+      globalmodal:require('./components/globalmodal.vue'),
       asidebar:require('./components/aside.vue'),
       toast:require('./components/toast.vue')
     },
@@ -342,6 +353,20 @@ module.exports = {
       //自定义时长
       customShowToast:function(){
         this.toast = { content : '自定义时长4s...', timer : 4000};
+      },
+      //有时候想要自定义弹窗事件
+      showGlobalModal:function(){
+        this.globalModal = {
+          rd:Math.random(),
+          title:'title',
+          content:'content',
+          confirmFn:function(){
+            console.log('自定义confirmFn'+Math.random());
+          },
+          cancelFn:function(){
+            console.log('自定义cancelFn'+Math.random());
+          }
+        }
       }
     },
     ready:function(){
