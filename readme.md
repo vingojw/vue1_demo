@@ -3,14 +3,14 @@
 npm install
 npm run dev
 ```
-localhost:8080
+访问 localhost:8080
 
 如果想在手机上查看
 
 ```
 npm run ip
 ```
-你本地的ip:8080
+访问 你本地的ip:9000
 
 ## 版本控制，打包压缩
 MAC
@@ -57,4 +57,7 @@ npm run wb
 [qingcheng](https://github.com/zerqu/qingcheng)
 
 [vue-strap](https://github.com/yuche/vue-strap)
+
+##项目
+[m.yaomaiche.com](http://m.yaomaiche.com)
 
